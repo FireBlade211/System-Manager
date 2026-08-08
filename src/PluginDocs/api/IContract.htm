@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>API - IContract</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>IContract interface</H1>
+
+<P CLASS="subtle">
+Assembly: FireBlade.SystemManager.Plugin.dll<BR>
+Namespace: FireBlade.SystemManager.Plugin
+</P>
+
+<P>Represents the base interface for contracts.</P>
+
+<SPAN CLASS="subtle">Derived:</SPAN>
+<SPAN><A HREF="IAboutContract.htm">IAboutContract</A>, <A HREF="IIconContract.htm">IIconContract</A>, <A HREF="IPageNodeContract.htm">IPageNodeContract</A>, <A HREF="IPlugin.htm">IPlugin</A>, <A HREF="IPluginInfoContract.htm">IPluginInfoContract</A>, <A HREF="IPluginTreeContract.htm">IPluginTreeContract</A>, <A HREF="ISettingsContract.htm">ISettingsContract</A></SPAN>
+
+<H2>Methods</H2>
+
+<UL>
+<LI><CODE>IContract QueryContract(string contractIdentifier)</CODE>
+<P>Called whenever System Manager requests a contract implemented by this contract.</P>
+
+<P><B>Parameters</B></P>
+
+<UL>
+<LI><B>contractIdentifier</B>: The contract identifier. For contract identifiers, see the <A HREF="ContractIdentifiers.htm">ContractIdentifiers</A> class.</LI>
+</UL>
+
+<P><B>Returns</B></P>
+
+The IContract for the specified identifier if this contract implements the contract; otherwise, null.
+</LI>
+</UL>
+
+</BODY>
+</HTML>

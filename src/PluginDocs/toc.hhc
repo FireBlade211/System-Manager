@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Welcome">
+		<param name="Local" value="home.htm">
+		<param name="ImageNumber" value="27">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Plugin System Overview">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="What are plugins?">
+			<param name="Local" value="overview\about.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Contracts">
+			<param name="Local" value="overview\contracts.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Plugin Lifecycle">
+			<param name="Local" value="overview\lifecycle.htm">
+			<param name="ImageNumber" value="39">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Menu and Toolbar Merging">
+			<param name="Local" value="overview\merge.htm">
+			<param name="ImageNumber" value="20">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="How-to Guides">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Getting Started">
+			<param name="Local" value="guide\getting-started.htm">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Debugging Plugins">
+			<param name="Local" value="guide\debug.htm">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Sideloading">
+			<param name="Local" value="guide\sideloading.htm">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Publishing your Plugin">
+			<param name="Local" value="guide\publish.htm">
+			<param name="ImageNumber" value="16">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="API">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IContract">
+			<param name="Local" value="api\IContract.htm">
+			<param name="ImageNumber" value="17">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IPlugin (contract)">
+			<param name="Local" value="api\IPlugin.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IIconContract (contract)">
+			<param name="Local" value="api\IIconContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IPageContainerContract (contract)">
+			<param name="Local" value="api\IPageContainerContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IPageContract (contract)">
+			<param name="Local" value="api\IPageContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IPageNodeContract (contract)">
+			<param name="Local" value="api\IPageNodeContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IPluginInfoContract (contract)">
+			<param name="Local" value="api\IPluginInfoContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IPluginTreeContract (contract)">
+			<param name="Local" value="api\IPluginTreeContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ISettingsContract (contract)">
+			<param name="Local" value="api\ISettingsContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IAboutContract (contract)">
+			<param name="Local" value="api\IAboutContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

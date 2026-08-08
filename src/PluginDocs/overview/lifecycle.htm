@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Plugin Lifecycle</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Plugin Lifecycle</H1>
+
+<P>Plugins are discovered and loaded when System Manager starts and remain loaded for the lifetime of the application. All plugins are unloaded when System Manager shuts down.</P>
+
+<P>Before plugins are loaded, System Manager deletes all <CODE>.tmp</CODE> files in the plugins directory. These files indicate incomplete downloads from the Plugin Gallery. It also removes the <CODE>.upgrade</CODE> extension from <CODE>.upgrade</CODE> files, and if a file already exists with that name, it deletes the original before renaming. The reason for this behavior is to allow updating plugins, since plugins cannot be unloaded at runtime.</P>
+
+<!-- scale down 640x480 to 480x360 so that it fits on the page without scrolling -->
+<IMG SRC="lifecycle.png" WIDTH="480" HEIGHT="360"></IMG>
+
+<P CLASS="subtle"><I>Figure 1. Plugin lifecycle</I></P>
+
+</BODY>
+</HTML>

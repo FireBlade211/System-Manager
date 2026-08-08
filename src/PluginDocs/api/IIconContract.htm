@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>API - IIconContract</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>IIconContract contract</H1>
+
+<P CLASS="subtle">
+Assembly: FireBlade.SystemManager.Plugin.dll<BR>
+Namespace: FireBlade.SystemManager.Plugin
+</P>
+
+<P>Represents a contract used for retrieving icons.</P>
+
+<H2>Methods</H2>
+
+<UL>
+<LI><CODE>bool TryGetIcon(bool large, out Icon icon)</CODE>
+<P>Attempts to retrieve an icon for the object this contract was queried from at the specified size.</P>
+
+<P><B>Parameters</B></P>
+
+<UL>
+<LI><B>large</B>: <CODE>true</CODE> to retrieve the large icon; <CODE>false</CODE> to retrieve the small icon.</LI>
+<LI><B>icon</B>: When this function returns, receives the icon retrieved.</LI>
+</UL>
+
+<P><B>Returns</B></P>
+
+<CODE>true</CODE> if the icon was retrieved successfully; otherwise, <CODE>false</CODE>.
+</LI>
+</UL>
+
+<H2>This contract can implement</H2>
+<P CLASS="subtle"><I>None</I></P>
+
+</BODY>
+</HTML>

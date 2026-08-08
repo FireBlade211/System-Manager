@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Sideloading</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Sideloading</H1>
+
+<P>Sideloading allows you to load plugins that were not obtained from the official plugin repository. <B>Before sideloading, please read the following warning:</B></P>
+
+<UL>
+<LI>Plugins are loaded into the same application domain (AppDomain). This means they <B>run in the same security context as System Manager itself and are not isolated</B>. Make sure you trust the plugin you want to sideload before sideloading it.</LI>
+</UL>
+
+<P>To sideload a plugin:</P>
+
+<OL>
+<LI>Find the DLL file for the plugin.</LI>
+<LI>Navigate to your <B>System Manager</B> installation directory.</LI>
+<LI>Open or create the <I>plugins</I> subdirectory.</LI>
+<LI>Copy your plugin's DLL file into the <B>plugins</B> directory.</LI>
+</OL>
+
+<P>When <A HREF="debug.htm">debugging</A> a plugin, you may want to sideload with symbols. Simply copy your plugin DLL's symbol file next to the plugin in the <I>plugins</I> directory.</P>
+
+</BODY>
+</HTML>

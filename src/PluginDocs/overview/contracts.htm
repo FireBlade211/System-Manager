@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Contracts</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Contracts</H1>
+<P>Contracts allow a plugin to communicate with <B>System Manager</B>. Every contract is defined as an interface that inherits from the <A HREF="../api/IContract.htm">IContract</A> interface and adds additional methods and properties on top.</P>
+
+<P>Each plugin contains one instance of the <A HREF="../api/IPlugin.htm">IPlugin</A> contract. If a plugin provides more than one, only the first one will be used and the others will be dropped, based on .NET Framework's load order.</P>
+
+<P>The <A HREF="../api/IContract.htm">IContract</A> interface, which all other contracts inherit from, provides the <B>QueryContract</B> function. This function allows you to give additional contracts back to <B>System Manager</B>. The contracts that a particular contract can return from <B>QueryContract</B> are listed under the <I>This contract can implement</I> section on each contract's API page. The contract identifiers for every contract are in the <B>ContractIdentifiers</B> class in the <B>FireBlade.SystemManager.Plugin</B> namespace.</P>
+
+<P>This contract-based model ensures backwards compatibility, allowing an older plugin to work on newer versions of <B>System Manager</B>, as it only has to implement the contracts it uses.</P>
+
+</BODY>
+</HTML>

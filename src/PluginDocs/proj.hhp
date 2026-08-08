@@ -1,0 +1,16 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=proj.chm
+Contents file=toc.hhc
+Default Window=Main
+Display compile progress=No
+Full-text search=Yes
+Index file=idx.hhk
+Language=0x415 Polski (Polska)
+
+[WINDOWS]
+Main="System Manager - Plugin Documentation","toc.hhc","idx.hhk","home.htm","home.htm",,,,,0x23520,280,0x3046,[487,222,1574,885],,,,,,,0
+
+
+[INFOTYPES]
+

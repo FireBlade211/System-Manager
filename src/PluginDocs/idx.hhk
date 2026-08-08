@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, what are plugins">
+		<param name="Local" value="overview\about.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, contracts">
+		<param name="Local" value="overview\contracts.htm">
+		<param name="Local" value="api\IContract.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, merging">
+		<param name="Local" value="overview\merge.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, menu merging">
+		<param name="Local" value="overview\merge.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, toolbar merging">
+		<param name="Local" value="overview\merge.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, lifecycle">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, loading">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, unloading">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, startup">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, shutdown">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, upgrade">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, updating">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, temporary files">
+		<param name="Local" value="overview\lifecycle.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, debugging">
+		<param name="Local" value="guide\debug.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, debug">
+		<param name="Local" value="guide\debug.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, deploy">
+		<param name="Local" value="guide\sideloading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, deploying">
+		<param name="Local" value="guide\sideloading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, sideload">
+		<param name="Local" value="guide\sideloading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, sideloading">
+		<param name="Local" value="guide\sideloading.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, publish">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, upload">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, publishing">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, repository">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, gallery">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, plugin gallery">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, pull request">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="plugins, submit">
+		<param name="Local" value="guide\publish.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

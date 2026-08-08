@@ -1,0 +1,29 @@
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 9pt;
+}
+
+h1 {
+    font-size: 12pt;
+    font-family: Verdana, Arial, sans-serif;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 11pt;
+    font-family: Verdana;
+}
+
+.subtle {
+    color: #808080;
+}
+
+a {
+   color: blue;
+}
+
+a:hover {
+    /* font-size: 10pt; */
+    font-weight: bold;
+    color: red;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Publish your Plugin</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Publish your plugin
+
+<!-- animated spinning globe -->
+<IMG SRC="globe.gif" ALIGN="right" ALT="globe" LOOP="-1"></IMAGE>
+</H1>
+
+<P>To publish your plugin to the official plugin repository:</P>
+
+<OL>
+<!-- TARGET="_BLANK" to open in default browser instead of the IE inside the help viewer -->
+<LI>Fork the <A HREF="https://github.com/FireBlade211/System-Manager-Plugins" TARGET="_BLANK">System-Manager-Plugins</A> repository.</LI>
+<LI>Clone your fork of the repository to a local folder using Git.</LI>
+<LI>Inside the <I>plugins</I> subfolder, add your plugin DLL and rename it to <I>PluginID.dll</I>, where <I>PluginID</I> is a unique string that identifies your plugin.</LI>
+<LI>Create a new file next to the DLL named <I>PluginID.dll.json</I>. This file will contain your plugin manifest, which allows the Plugin Gallery to identify the plugin before downloading it.</LI>
+<LI><P>Inside the plugin manifest, paste the following JSON structure and replace the values in each field as necessary:</P>
+
+<PRE><CODE>
+{
+   "name": "My Plugin",
+   "description": "Sample description",
+   "author": "Creator of this plugin",
+   "version": "1.0"
+}
+</CODE></PRE>
+
+<P><B>NOTE:</B> The version number can be in one of 4 different formats: an incrementing number, MAJOR.MINOR, MAJOR.MINOR.PATCH, and Windows-style (MAJOR.MINOR.BUILD.REVISION). You cannot change between versioning styles after your plugin has been uploaded, even if you want to update it.</P></LI>
+
+<LI>Commit your changes with a descriptive commit message.</LI>
+<LI>Push your local changes to your fork repository.</LI>
+<LI>Create a new Pull Request (PR) from your fork repository to the main <I>System-Manager-Plugins</I> repository, and fill out the PR template as necessary.</LI>
+<LI>Wait until your PR gets merged or I respond to it. I'm busy and can't keep responding to everyone at once, so you might get unlucky. I'm sorry.</LI>
+</OL>
+
+</BODY>
+</HTML>

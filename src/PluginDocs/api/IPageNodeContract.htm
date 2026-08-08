@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>API - IPageNodeContract</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>IPageNodeContract contract</H1>
+
+<P CLASS="subtle">
+Assembly: FireBlade.SystemManager.Plugin.dll<BR>
+Namespace: FireBlade.SystemManager.Plugin
+</P>
+
+<P>Represents the base contract for tree nodes.</P>
+
+<SPAN CLASS="subtle">Derived:</SPAN>
+<SPAN><A HREF="IPageContainerContract.htm">IPageContainerContract</A>, <A HREF="IPageContract.htm">IPageContract</A></SPAN>
+
+<H2>Properties</H2>
+
+<UL>
+<LI>
+<CODE>string Id { get; }</CODE>
+
+<P>Gets the unique ID of this page node.</P>
+
+<B>Remarks</B>
+
+<P>Container nodes that share the same ID will be merged. This ID can be used to identify a node.</P>
+</LI>
+
+<LI>
+<CODE>string DisplayName { get; }</CODE>
+
+<P>Gets the display name of this page node.</P>
+</LI>
+
+<LI>
+<CODE>string Description { get; }</CODE>
+
+<P>Gets the description of this page node.</P>
+
+</LI>
+</UL>
+
+<H2>This contract can implement</H2>
+<P CLASS="subtle"><I>None</I></P>
+
+</BODY>
+</HTML>

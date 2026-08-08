@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Getting Started</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Getting Started</H1>
+
+<P>This guide will help you create your first plugin.</P>
+<P><B>NOTE:</B> This guide assumes you are using Visual Studio.</P>
+
+<H2>Creating the project</H2>
+
+<OL>
+<LI>Open Visual Studio.</LI>
+<LI>Click <B>Create Project</B>.</LI>
+<LI>From the list of templates, select <B>Class Library (.NET Framework).</B></LI>
+<LI>Name your project and specify a location to save it in.</LI>
+<LI>From the list of versions, select <B>.NET Framework 4.5.2</B> or an earlier version.</LI>
+<LI>Click <B>Finish</B> to create the project.</LI>
+</OL>
+
+<H2>Setting up the project</H2>
+
+<OL>
+<LI>In <B>Solution Explorer</B>, right-click your project and select <B>Properties</B>.</LI>
+<LI>Inside the <B>Project Properties</B> menu, go to <B>Build Actions</B></LI>
+<LI><P>Inside <B>Post-Build Actions</B>, specify the following command-line string:</P>
+
+<CODE>
+IF NOT EXIST "PATH_TO_SYSTEM_MANAGER\plugins" MKDIR "PATH_TO_SYSTEM_MANAGER\plugins"
+COPY "$(TargetPath)" "PATH_TO_SYSTEM_MANAGER\plugins\$(TargetFileName)" /Y
+IF "$(ConfigurationName)" == "Debug" COPY "$(TargetDir)$(TargetName).pdb" "PATH_TO_SYSTEM_MANAGER\plugins\$(TargetName).pdb" /Y
+</CODE>
+
+<P>Make sure to replace <I>PATH_TO_SYSTEM_MANAGER</I> with the directory of your <B>System Manager</B> installation.</P></LI>
+
+<LI>Set the <B>Run the post-build event</B> setting to <B>When the build updates the project output.</B>
+<LI>Close the <B>Project Properties</B>.</LI>
+<LI>In <B>Solution Explorer</B>, right-click <B>References</B>, and select <B>Add Project Reference.</B></LI>
+<LI>In the <B>Add References</B> dialog, go to the <B>Browse</B> tab, and click <B>Browse</B>.</LI>
+<LI>Find the directory of your <B>System Manager</B> installation, and select <B>FireBlade.SystemManager.Plugin.dll</B>.</LI>
+
+<LI><B>(OPTIONAL) </B>To make developing plugins easier, <B>System Manager</B> provides a helper DLL. To include the DLL, click <B>Browse</B> again, and select <B>FireBlade.SystemManager.Helpers.dll</B>.</LI>
+
+<LI>Click <B>OK</B>.</LI>
+
+</OL>
+
+<H2>Implementing contracts</H2>
+<P><B>NOTE:</B> If you don't know what contracts are yet, please see the <A HREF="../overview/contracts.htm">Contracts</A> page.</P>
+
+<OL>
+<LI>Create a new C# code file. Name it <CODE>MyPlugin.cs</CODE>.</LI>
+<LI>At the top of the file, add the following statement:
+
+<CODE>using FireBlade.SystemManager.Plugin;</CODE></LI>
+
+<LI>Define a new class called <B>MyPlugin</B>.</LI>
+<LI>Make sure the class implements the <CODE>IPlugin</CODE> interface.</LI>
+<LI><P>Inside the <CODE>QueryContract</CODE> function, define a switch statement as follows:</P>
+
+<PRE><CODE>
+switch (contractIdentifier)
+{
+   case ContractIdentifiers.PluginInfoContractIdentifier:
+         return new MyPluginInfo();
+   case ContractIdentifiers.PluginTreeContractIdentifier:
+         return new MyPluginTree();
+}
+</CODE></PRE>
+
+<P><B>NOTE:</B> Right now, this will cause 2 errors. This is because the classes referenced in this code snippet do not exist. We will create these classes in the next section.</P>
+
+</LI>
+</OL>
+
+<H2>Implementing the Info and Tree contracts</H2>
+
+<OL>
+<LI>Create a new code file named <B>MyPluginInfo.cs</B>.</LI>
+<LI>Inside the code file, add the same <B>using</B> statement as before.</LI>
+<LI>Define a new class named <B>MyPluginInfo</B>.</LI>
+<LI>Make sure the class implements the <B>IPluginInfoContract</B> interface.</LI>
+<LI>Inside the <B>Name</B> property, specify "Hello, World!". Inside the <B>Description</B> property, specify "This is a custom plugin!"</LI>
+<LI>For now, return <B>null</B> from the <B>QueryContract</B> function.</LI>
+
+<LI>Create a new code file named <B>MyPluginTree.cs</B>.</LI>
+<LI>Inside the code file, add the same <B>using</B> statement as before.</LI>
+<LI>Define a new class named <B>MyPluginTree</B>.</LI>
+<LI>Make sure the class implements the <B>IPluginTreeContract</B> interface.</LI>
+<LI>Inside the <B>GetNodes</B> function, set the <B>parentId</B> to <I>root</I> and return an array of <B>IPageNodeContract</B>s, like this:
+
+<CODE>
+return new IPageNodeContract[] { new MyPageContract() };
+</CODE></LI>
+</OL>
+
+<H2>Defining pages</H2>
+
+<OL>
+<LI>Create a new code file named <B>MyPageContract.cs</B>.</LI>
+<LI>Inside the code file, add the same <B>using</B> statement as before.</LI>
+<LI>Define a new class named <B>MyPageContract</B>.</LI>
+<LI>Make sure the class implements the <B>IPageContract</B> interface (not to be confused with <B>IPageNodeContract</B>)</LI>
+<LI>Inside the <B>Id</B> property, specify "HelloWorldSample.TestPage".</LI>
+<LI>Inside the <B>DisplayName</B> property, specify "Hello, World!".</LI>
+<LI>Inside the <B>Description</B> property, specify "This is a sample page.",</LI>
+<LI>Inside the <B>CreateContent</B> function, return the following UI:
+
+<PRE><CODE>
+        public UserControl CreateContent() => new UserControl
+        {
+            Controls =
+            {
+                new Label
+                {
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Text = "Hello, World! This is a sample page from a plugin."
+                }
+            }
+        }
+</CODE></PRE>
+</LI>
+
+<LI>From the <B>QueryContract</B> function, return <B>null</B>.</LI>
+</OL>
+
+<H2>Build and Test</H2>
+
+<OL>
+<LI>Compile the project.</LI>
+<LI>Open your <B>System Manager</B> installation directory and navigate to the <B>plugins</B> folder.</LI>
+<LI>Verify that your plugin DLL was successfully copied to the directory.</LI>
+<LI>Run <B>System Manager</B>.</LI>
+<LI>Check that your new <I>Hello, World!</I> page appears under the <B>Home</B> node.</LI>
+<LI>Navigate into your page and test that the UI is created correctly. The page should say "Hello, World! This is a sample page from a plugin."</LI>
+</OL>
+
+<P>You have succesfully created your first plugin. Note that the page currently displays the icon of the previous page; see the documentation for <A HREF="../api/IPageContract.htm">IPageContract</A> for more details. To debug your plugin, see the <A HREF="debug.htm">Debugging Plugins</A> page.</P>
+
+</BODY>
+</HTML>
