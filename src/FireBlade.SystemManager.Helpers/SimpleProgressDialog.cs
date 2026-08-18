@@ -111,6 +111,8 @@ namespace FireBlade.SystemManager.Helpers
             }
         }
 
+        private Task _dlgTask;
+
         /// <summary>
         /// Shows the dialog.
         /// </summary>
@@ -118,6 +120,7 @@ namespace FireBlade.SystemManager.Helpers
         {
             _form = new Form();
             _form.FormClosing += Form_FormClosing;
+            _form.Shown += Form_Shown;
             
             _form.Text = this.Title;
             _form.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -158,14 +161,30 @@ namespace FireBlade.SystemManager.Helpers
             }
 
             if (parent != null)
-                _form.ShowDialog(parent);
+            {
+                _form.Show(parent);
+                _form.Enabled = false;
+            }
             else
-                _form.ShowDialog();
+                _form.Show();
+        }
+
+        private void Form_Shown(object sender, EventArgs e)
+        {
+            var f = (sender as Form);
+
+            int x = f.Owner.Left + (f.Owner.Width -  f.Width) / 2;
+            int y = f.Owner.Top +  (f.Owner.Height - f.Height) / 2;
+
+            f.StartPosition = FormStartPosition.Manual;
+            f.Location = new Point(x, y);
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_closeLock) return;
+
+            _form.Parent.Enabled = true;
 
             if (_bound)
             {
@@ -192,6 +211,8 @@ namespace FireBlade.SystemManager.Helpers
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            _form.Parent.Enabled = true;
+
             if (_bound)
             {
                 _worker.CancelAsync();

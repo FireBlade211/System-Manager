@@ -59,6 +59,7 @@
             this.systemManagerPluginRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.pluginDocumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -162,7 +163,7 @@
             this.findPagesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("findPagesToolStripMenuItem.Image")));
             this.findPagesToolStripMenuItem.Name = "findPagesToolStripMenuItem";
             this.findPagesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.findPagesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.findPagesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.findPagesToolStripMenuItem.Text = "&Find pages...";
             this.findPagesToolStripMenuItem.Click += new System.EventHandler(this.findPagesToolStripMenuItem_Click);
             // 
@@ -171,7 +172,7 @@
             this.goToPageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("goToPageToolStripMenuItem.Image")));
             this.goToPageToolStripMenuItem.Name = "goToPageToolStripMenuItem";
             this.goToPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.goToPageToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.goToPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.goToPageToolStripMenuItem.Text = "&Go to Page...";
             this.goToPageToolStripMenuItem.Click += new System.EventHandler(this.goToPageToolStripMenuItem_Click);
             // 
@@ -179,21 +180,21 @@
             // 
             this.recentPagesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recentPagesToolStripMenuItem.Image")));
             this.recentPagesToolStripMenuItem.Name = "recentPagesToolStripMenuItem";
-            this.recentPagesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.recentPagesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.recentPagesToolStripMenuItem.Text = "&Recent pages";
             this.recentPagesToolStripMenuItem.Visible = false;
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripMenuItem.Image")));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeyDisplayString = "Alt+F4";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -203,7 +204,8 @@
             this.systemManagerSettingsToolStripMenuItem,
             this.pluginsToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.exportimportToolStripMenuItem});
+            this.exportimportToolStripMenuItem,
+            this.checkForUpdatesToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.settingsToolStripMenuItem.Text = "&Settings";
@@ -263,14 +265,14 @@
             // 
             this.exportSettingsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.exportSettingsToolStripMenuItem.Name = "exportSettingsToolStripMenuItem";
-            this.exportSettingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.exportSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportSettingsToolStripMenuItem.Text = "&Export settings";
             // 
             // importSettingsToolStripMenuItem
             // 
             this.importSettingsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.importSettingsToolStripMenuItem.Name = "importSettingsToolStripMenuItem";
-            this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importSettingsToolStripMenuItem.Text = "I&mport settings";
             // 
             // helpToolStripMenuItem
@@ -324,6 +326,13 @@
             this.pluginDocumentationToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.pluginDocumentationToolStripMenuItem.Text = "&Plugin documentation...";
             this.pluginDocumentationToolStripMenuItem.Click += new System.EventHandler(this.pluginDocumentationToolStripMenuItem_Click);
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check for updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -383,6 +392,7 @@
         private System.Windows.Forms.ToolStripMenuItem goToPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem pluginDocumentationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
     }
 }
 

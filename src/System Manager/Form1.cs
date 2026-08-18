@@ -1,12 +1,17 @@
 ﻿using FireBlade.SystemManager.Helpers;
 using FireBlade.SystemManager.Plugin;
 using FireBlade.SystemManager.Properties;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -72,6 +77,8 @@ namespace FireBlade.SystemManager
             var children = e.Node.Nodes.Cast<TreeNode>();
 
             ToolStripManager.RevertMerge(menuStrip1);
+            ToolStripManager.RevertMerge(toolStrip1);
+
             toolStrip1.Items.Clear();
 
             if (children.Any())
@@ -90,6 +97,13 @@ namespace FireBlade.SystemManager
                             Tag = child,
                             Group = found.Groups.Cast<ListViewGroup>().FirstOrDefault()
                         });
+
+                    var grp = found.Groups.Cast<ListViewGroup>().FirstOrDefault();
+
+                    if (grp != null)
+                        grp.Header = e.Node.Text;
+                    else
+                        found.Groups.Add("listViewGroup1", e.Node.Text);
 
                     found.EndUpdate();
                 }
@@ -159,7 +173,8 @@ namespace FireBlade.SystemManager
                     {
                         content.Controls.Remove(tb);
 
-                        toolStrip1.Items.AddRange(tb.Items);
+                        //toolStrip1.Items.AddRange(tb.Items);
+                        ToolStripManager.Merge(tb, toolStrip1);
                     }
 
                     var menu = content.Controls.OfType<MenuStrip>().FirstOrDefault();
@@ -275,6 +290,8 @@ namespace FireBlade.SystemManager
 
             PluginHelper.LoadPlugins(this);
             treeView1.SelectedNode = rootNode;
+
+            _ = CheckUpdates(false);
         }
 
         private static Icon BitmapToIcon(Bitmap bitmap)
@@ -507,5 +524,230 @@ namespace FireBlade.SystemManager
             // so we do it manually
             Help.ShowHelp(this, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "docs.chm"), HelpNavigator.Topic, "home.htm");
         }
+
+        private async Task CheckUpdates(bool showProgress = true)
+        {
+            SimpleProgressDialog dlg = null;
+
+            if (showProgress)
+            {
+                dlg = SimpleProgressDialog.CreateDialog("Checking for updates", "Check for Updates", true);
+                dlg.AllowCancel = false;
+                dlg.ShowDialog(this);
+            }
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    if (!string.IsNullOrEmpty(Settings.Default.GitHubToken))
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                            SettingsDlg.UnprotectToken(Settings.Default.GitHubToken));
+
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                    var ver = Assembly.GetCallingAssembly().GetName().Version;
+
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+                    client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("System-Manager",
+                        $"{ver.Major}.{ver.Minor}"));
+
+                    var response = await client.GetAsync("https://api.github.com/repos/FireBlade211/System-Manager/releases/latest");
+                    response.EnsureSuccessStatusCode();
+
+                    string json = await response.Content.ReadAsStringAsync();
+
+                    var release = JsonConvert.DeserializeObject<JsonReleaseInfo>(json);
+                    var latest = Version.Parse(release.TagName.TrimStart('v'));
+
+                    // Check if it's a later release.
+                    if (latest > ver)
+                    {
+                        var result = MessageBox.Show($"An update is available. ({release.TagName}).\n\nDo you want to download it now?",
+                            "Update available", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.OK)
+                        {
+                            // For now, just send them to the download page (we can implement auto-installation later)
+                            Process.Start(release.HtmlUrl);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while checking for updates:\n\n{ex.Message}", null, MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
+            dlg?.Close();
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           _ = CheckUpdates();
+        }
+    }
+
+    public class JsonReleaseInfo
+    {
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        [JsonProperty("html_url")]
+        public string HtmlUrl { get; set; }
+
+        [JsonProperty("assets_url")]
+        public string AssetsUrl { get; set; }
+
+        [JsonProperty("upload_url")]
+        public string UploadUrl { get; set; }
+
+        [JsonProperty("tarball_url")]
+        public string TarballUrl { get; set; }
+
+        [JsonProperty("zipball_url")]
+        public string ZipballUrl { get; set; }
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("node_id")]
+        public string NodeId { get; set; }
+
+        [JsonProperty("tag_name")]
+        public string TagName { get; set; }
+
+        [JsonProperty("target_commitish")]
+        public string TargetCommitish { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("body")]
+        public string Body { get; set; }
+
+        [JsonProperty("draft")]
+        public bool Draft { get; set; }
+
+        [JsonProperty("prerelease")]
+        public bool Prerelease { get; set; }
+
+        [JsonProperty("immutable")]
+        public bool Immutable { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("published_at")]
+        public DateTime PublishedAt { get; set; }
+
+        [JsonProperty("author")]
+        public JsonReleaseAuthorInfo Author { get; set; }
+
+        [JsonProperty("assets")]
+        public JsonReleaseAssetInfo[] Assets { get; set; }
+    }
+
+    public class JsonReleaseAuthorInfo
+    {
+        [JsonProperty("login")]
+        public string Login { get; set; }
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("node_id")]
+        public string NodeId { get; set; }
+
+        [JsonProperty("avatar_url")]
+        public string AvatarUrl { get; set; }
+
+        [JsonProperty("gravatar_id")]
+        public string GravatarId { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        [JsonProperty("html_url")]
+        public string HtmlUrl { get; set; }
+
+        [JsonProperty("followers_url")]
+        public string FollowersUrl { get; set; }
+
+        [JsonProperty("following_url")]
+        public string FollowingUrl { get; set; }
+
+        [JsonProperty("gists_url")]
+        public string GistsUrl { get; set; }
+
+        [JsonProperty("starred_url")]
+        public string StarredUrl { get; set; }
+
+        [JsonProperty("subscriptions_url")]
+        public string SubscriptionsUrl { get; set; }
+
+        [JsonProperty("organizations_url")]
+        public string OrganizationsUrl { get; set; }
+
+        [JsonProperty("repos_url")]
+        public string ReposUrl { get; set; }
+
+        [JsonProperty("events_url")]
+        public string EventsUrl { get; set; }
+
+        [JsonProperty("received_events_url")]
+        public string ReceivedEventsUrl { get; set; }
+
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("site_admin")]
+        public bool SiteAdmin { get; set; }
+    }
+
+    public class JsonReleaseAssetInfo
+    {
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        [JsonProperty("browser_download_url")]
+        public string BrowserDownloadUrl { get; set; }
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("node_id")]
+        public string NodeId { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("label")]
+        public string Label { get; set; }
+
+        [JsonProperty("state")]
+        public string State { get; set; }
+
+        [JsonProperty("content_type")]
+        public string ContentType { get; set; }
+
+        [JsonProperty("size")]
+        public int Size { get; set; }
+
+        [JsonProperty("digest")]
+        public string Digest { get; set; }
+
+        [JsonProperty("download_count")]
+        public int DownloadCount { get; set; }
+
+        [JsonProperty("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("updated_at")]
+        public DateTime UpdatedAt { get; set; }
+
+        [JsonProperty("uploader")]
+        public JsonReleaseAuthorInfo Uploader { get; set; }
     }
 }

@@ -265,7 +265,7 @@ namespace FireBlade.SystemManager
                         }
 
                         using (var response = await client.GetAsync(
-                            info.DllItem.DownloadUrl,
+                            $"https://raw.githubusercontent.com/FireBlade211/System-Manager-Plugins/refs/heads/main/{info.DllItem.Path}",
                             HttpCompletionOption.ResponseHeadersRead))
                         {
                             response.EnsureSuccessStatusCode();

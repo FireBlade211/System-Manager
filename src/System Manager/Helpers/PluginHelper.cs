@@ -196,6 +196,7 @@ namespace FireBlade.SystemManager.Helpers
                     Text = node.DisplayName,
                     ToolTipText = node.Description,
                     ImageIndex = mainForm.imageListSmall.Images.Count - 1,
+                    SelectedImageIndex = mainForm.imageListSmall.Images.Count - 1,
                     Tag = node
                 };
 
