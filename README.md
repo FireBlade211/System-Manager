@@ -1,6 +1,9 @@
 # System Manager
 **System Manager** is an extensible tool that brings Windows utilities together in one place and lets you install plugins to add more tools.
 
+## Screenshot
+![Screenshot of System Manager on the home page](readme-screenshot.png)
+
 ## System Requirements
 - **.NET Framework** 4.5.2 runtime
 - **Windows Vista** SP2 or **Windows 7** and later
