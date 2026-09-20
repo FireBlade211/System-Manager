@@ -37,6 +37,7 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.gradientControl1 = new FireBlade.SystemManager.Controls.GradientControl();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -65,14 +66,14 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(12, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 21);
+            this.label2.Size = new System.Drawing.Size(93, 21);
             this.label2.TabIndex = 3;
-            this.label2.Text = "v1.1";
+            this.label2.Text = "Version 1.2";
             // 
             // labeledDivider1
             // 
             this.labeledDivider1.DividerColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(191)))), ((int)(((byte)(222)))));
-            this.labeledDivider1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.labeledDivider1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labeledDivider1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(170)))));
             this.labeledDivider1.Location = new System.Drawing.Point(13, 189);
             this.labeledDivider1.Name = "labeledDivider1";
@@ -144,12 +145,24 @@
             this.gradientControl1.Y1 = 0F;
             this.gradientControl1.Y2 = 0F;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label3.Location = new System.Drawing.Point(396, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Build 0A31:14B";
+            // 
             // AboutDlg
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 300);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
@@ -183,5 +196,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.Label label3;
     }
 }
