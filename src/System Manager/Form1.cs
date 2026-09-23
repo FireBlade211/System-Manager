@@ -372,6 +372,9 @@ namespace FireBlade.SystemManager
 
         private void findPagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ToolStripManager.RevertMerge(menuStrip1);
+            ToolStripManager.RevertMerge(toolStrip1);
+
             var page = new FindPage(this);
             page.Dock = DockStyle.Fill;
 
