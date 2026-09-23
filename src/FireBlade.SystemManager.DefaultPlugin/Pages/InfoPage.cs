@@ -76,54 +76,9 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
 
         private const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
 
-        private const int LVM_FIRST = 0x1000;
-        private const int LVM_SETGROUPINFO = LVM_FIRST + 147;
-
-        private const uint LVGF_STATE = 0x00000004;
-
-        private const uint LVGS_NORMAL = 0x00000000;
-        private const uint LVGS_COLLAPSED = 0x00000001;
-        private const uint LVGS_HIDDEN = 0x00000002;
-        private const uint LVGS_NOHEADER = 0x00000004;
-        private const uint LVGS_COLLAPSIBLE = 0x00000008;
-        private const uint LVGS_FOCUSED = 0x00000010;
-        private const uint LVGS_SELECTED = 0x00000020;
-        private const uint LVGS_SUBSETED = 0x00000040;
-        private const uint LVGS_SUBSETLINKFOCUSED = 0x00000080;
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        private struct LVGROUP
-        {
-            public uint cbSize;
-            public uint mask;
-            public IntPtr pszHeader;
-            public int cchHeader;
-            public IntPtr pszFooter;
-            public int cchFooter;
-            public int iGroupId;
-            public uint stateMask;
-            public uint state;
-            public uint uAlign;
-            public IntPtr pszSubtitle;
-            public uint cchSubtitle;
-            public IntPtr pszTask;
-            public uint cchTask;
-            public IntPtr pszDescriptionTop;
-            public uint cchDescriptionTop;
-            public IntPtr pszDescriptionBottom;
-            public uint cchDescriptionBottom;
-            public int iTitleImage;
-            public int iExtendedImage;
-            public int iFirstItem;
-            public IntPtr pszSubsetTitle;
-            public uint cchSubsetTitle;
-        }
-
-        private CancellationTokenSource _wmiTokenSrc;
-        //private HashSet<object> Items = new HashSet<object>();
-
         private void LoadInfo()
         {
+            DisposeObjects();
             label4.Text = Environment.MachineName;
             
             using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Capacity FROM Win32_PhysicalMemory"))
@@ -142,164 +97,87 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
                 }
             }
 
-            label6.Text = GetProcessorName();
-
-            listView1.UseWaitCursor = true;
-
-            listView1.Items.Clear();
             listView1.BeginUpdate();
+            listView1.Items.Clear();
 
-            _wmiTokenSrc = new CancellationTokenSource();
-            button1.Enabled = _wmiTokenSrc.Token.CanBeCanceled;
-
-            progressBar1.Value = 0;
-            progressBar1.Visible = true;
-            label7.Visible = true;
-            button1.Visible = true;
-
-            // Wait until UI operations are finished.
-            BeginInvoke(() => Task.Run(() =>
+            Task.Run(() =>
             {
-                using (ManagementObjectSearcher rootSearcher = new ManagementObjectSearcher(
-                    "SELECT * FROM meta_class"))
+                using (ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor"))
                 {
-                    var classes = rootSearcher.Get();
-                    Invoke(() => progressBar1.Maximum = classes.Count);
-                    
-                    foreach (var c in classes)
+                    using (var results = searcher.Get())
                     {
-                        if (_wmiTokenSrc.Token.IsCancellationRequested) break;
-
-                        string className = c["__CLASS"].ToString();
-
-                        // blacklist to make it faster
-                        if (className.StartsWith("CIM_")) continue;
-                        if (className.Equals("Win32_SoftwareElement", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_NTDomain", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_CodecFile", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_NTEventlogFile", StringComparison.Ordinal)) continue;
-                        if (className.Contains("Directory")) continue;
-                        if (className.Equals("Win32_NTLogEvent", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_PageFile", StringComparison.Ordinal)) continue;
-                        if (className.EndsWith("Service")) continue;
-                        if (className.Contains("Driver")) continue;
-                        if (className.Equals("Win32_Thread", StringComparison.Ordinal)) continue;
-                        if (className.Contains("COM")) continue;
-                        if (className.Contains("Win32_SoftwareFeature")) continue;
-                        if (className.Equals("Win32_OptionalFeature", StringComparison.Ordinal)) continue;
-                        if (className.Contains("Component")) continue;
-                        if (className.Contains("CommandLine")) continue;
-                        if (className.Contains("Win32_SecuritySetting")) continue;
-                        if (className.Equals("Win32_LoadOrderGroupServiceMembers", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_GroupUser", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_MemoryDeviceArray", StringComparison.Ordinal)) continue;
-                        if (className.Contains("ProgramGroup")) continue;
-                        if (className.Equals("Win32_PhysicalMemoryLocation", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_Product", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_MSIResource", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_ComputerSystemProduct", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_ServiceControl", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_Property", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_PatchPackage", StringComparison.Ordinal)) continue;
-                        if (className.Equals("Win32_ShortcutAction", StringComparison.Ordinal)) continue;
-
-                        double percentage = ((double)progressBar1.Value / (double)progressBar1.Maximum) * 100.0;
-
-                        Invoke(() => label7.Text = $"Processing: {className}" +
-                        $"\n{percentage:0.##}%");
-
-                        using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(
-                            "SELECT * FROM " + className))
-                        {
-                            var results = searcher.Get().Cast<ManagementObject>();
-
-                            try
+                        foreach (var item in results.OfType<ManagementObject>())
+                            Invoke(() => listView1.Items.Add(new ListViewItem
                             {
-                                if (results.Any())
-                                {
-                                    int index = 0;
-
-                                    foreach (var instance in results)
-                                    {
-                                        if (_wmiTokenSrc.Token.IsCancellationRequested) break;
-
-                                        Invoke(() => progressBar1.Maximum += instance.Properties.Count);
-
-                                        ListViewGroup group = null;
-
-                                        listView1.Invoke(() =>
-                                        {
-                                            group = new ListViewGroup($"{className} - Instance #{index}");
-                                            int id = listView1.Groups.Add(group) + 1;
-
-                                            LVGROUP lvg = new LVGROUP();
-                                            lvg.cbSize = (uint)Marshal.SizeOf<LVGROUP>();
-                                            lvg.mask = LVGF_STATE;
-                                            lvg.stateMask = LVGS_COLLAPSIBLE;
-                                            lvg.state = LVGS_COLLAPSIBLE;
-
-                                            nint hStruct = Marshal.AllocHGlobal(Marshal.SizeOf<LVGROUP>());
-                                            Marshal.StructureToPtr(lvg, hStruct, false);
-
-                                            NativeHelper.SendMessageW(listView1.Handle, LVM_SETGROUPINFO, (UIntPtr)id, hStruct);
-                                            Marshal.FreeHGlobal(hStruct);
-
-                                            //Items.Add(group);
-                                        });
-
-                                        foreach (var prop in instance.Properties)
-                                        {
-                                            if (_wmiTokenSrc.Token.IsCancellationRequested) break;
-
-                                            listView1.Invoke(() =>
-                                            {
-                                                var item = new ListViewItem
-                                                {
-                                                    Text = prop.Name,
-                                                    Tag = prop,
-                                                    Group = group,
-                                                    SubItems =
-                                                    {
-                                                        new ListViewItem.ListViewSubItem
-                                                        {
-                                                            Text = prop.Value?.ToString() ?? "<none>"
-                                                        }
-                                                    }
-                                                };
-
-                                                listView1.Items.Add(item);
-                                                //Items.Add(item);
-                                            });
-
-                                            Invoke(() => progressBar1.Value++);
-                                        }
-
-                                        index++;
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Debug.WriteLine("ERROR: " + ex.Message);
-                            }
-                        }
-
-                        Invoke(() => progressBar1.Value++);
+                                Tag = item,
+                                Text = TryGetValue(item, "Name", $"Untitled Processor #{listView1.Items.Count - 1}")
+                            }));
+                        // TODO: FINISH THE REST OF THE MODERNIZED SYS INFO PAGE, THEN TEST THE PLUGIN GALLERY SHIT, AND FINALLY BE DONE
                     }
-
-                    _wmiTokenSrc.Dispose();
                 }
+            });
 
-                listView1.Invoke(() =>
-                {
-                    listView1.EndUpdate();
-                    listView1.UseWaitCursor = false;
+            listView1.EndUpdate();
+        }
 
-                    progressBar1.Visible = false;
-                    label7.Visible = false;
-                    button1.Visible = false;
-                });
-            }));
+        private void DisposeObjects()
+        {
+            foreach (var item in listView1.Items.Cast<ListViewItem>())
+                if (item.Tag is ManagementObject o)
+                    o.Dispose();
+        }
+
+        private string AvailabilityToString(ushort available) => available switch
+        {
+            1 => "Other",
+            2 => "Unknown",
+            3 => "Running/Full Power",
+            4 => "Warning",
+            5 => "In Test",
+            6 => "Not Applicable",
+            7 => "Power Off",
+            8 => "Off Line",
+            9 => "Off Duty",
+            10 => "Degraded",
+            11 => "Not Installed",
+            12 => "Install Error",
+            13 => "Power Save (Unknown)",
+            14 => "Power Save (Low Power Mode)",
+            15 => "Power Save (Standby)",
+            16 => "Power Cycle",
+            17 => "Power Save (Warning)",
+            18 => "Paused",
+            19 => "Not Ready",
+            20 => "Not Configured",
+            21 => "Quiet",
+            _ => "Not found"
+        };
+
+        private string TryGetValue(ManagementObject obj, string prop, string fallback = "Unknown")
+        {
+            // sorry, couldn't find a method to check if something exists
+            try
+            {
+                return obj[prop].ToString();
+            }
+            catch
+            {
+                return fallback;
+            }
+        }
+
+        private T TryGetValue<T>(ManagementObject obj, string prop)
+        {
+            try
+            {
+                // we can't use the as keyword here because it only works with reference types
+                var val = obj[prop];
+                return val is T o ? o : default;
+            }
+            catch
+            {
+                return default;
+            }
         }
 
         private static string FormatBytes(ulong bytes)
@@ -322,19 +200,6 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             return $"{value:0.00} {units[unitIndex]}";
         }
 
-        private static string GetProcessorName()
-        {
-            using (var searcher = new ManagementObjectSearcher(
-                "SELECT Name FROM Win32_Processor"))
-            using (var results = searcher.Get())
-            {
-                foreach (ManagementObject processor in results)
-                    return processor["Name"]?.ToString();
-            }
-
-            return null;
-        }
-
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             LoadInfo();
@@ -345,71 +210,51 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             LoadInfo();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private string FormatClockSpeed(uint mhz)
         {
-            _wmiTokenSrc.Cancel();
-            button1.Enabled = false;
+            if (mhz == uint.MaxValue)
+                return "Unknown";
+
+            if (mhz < 1000)
+                return mhz.ToString() + " MHz";
+
+            double ghz = ((double)mhz) / 1000;
+            return ghz.ToString("0.00") + " GHz";
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string query = textBox1.Text;
-            //HashSet<object> found = new HashSet<object>();
-
-            //foreach (var entry in Items)
-            //    if (entry is ListViewItem lvi)
-            //    {
-            //        if (lvi.Text.Contains(query))
-            //            found.Add(lvi);
-            //    }
-            //    else if (entry is ListViewGroup lvg)
-            //    {
-            //        if (lvg.Header.Contains(query))
-            //            found.Add(lvg);
-            //    }
-
-            //listView1.BeginUpdate();
-
-            //foreach (var item in Items)
-            //    if (!found.Contains(item))
-            //    {
-            //        if (item is ListViewItem lvi)
-            //            listView1.Items.Remove(lvi);
-            //        else if (item is ListViewGroup lvg)
-            //        {
-            //            listView1.Groups.Remove(lvg);
-            //            foreach (ListViewItem it in lvg.Items)
-            //                listView1.Items.Remove(it);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (item is ListViewItem lvi && !listView1.Items.Contains(lvi))
-            //            listView1.Items.Add(lvi);
-            //        else if (item is ListViewGroup lvg && !listView1.Groups.Contains(lvg))
-            //            listView1.Groups.Add(lvg);
-            //    }
-
-            //listView1.EndUpdate();
-
-            var foundItem = listView1.FindItemWithText(textBox1.Text, true, 0, true);
-
-            if (foundItem != null)
+            if (listView1.SelectedItems.Cast<ListViewItem>().FirstOrDefault()?.Tag is ManagementObject item)
             {
-                listView1.TopItem = foundItem;
-            }
-            else
-            {
-                foreach (ListViewGroup group in listView1.Groups)
+                label6.Text = TryGetValue(item, "Name");
+                label9.Text = TryGetValue<ushort>(item, "Architecture") switch
                 {
-                    if (group.Header.Contains(textBox1.Text))
-                    {
-                        if (group.Items.Count > 0)
-                            listView1.TopItem = group.Items[0];
+                    (ushort)0u => "x86",
+                    (ushort)1u => "MIPS",
+                    (ushort)2u => "Alpha",
+                    (ushort)3u => "PowerPC",
+                    (ushort)5u => "ARM",
+                    (ushort)6u => "IA64",
+                    (ushort)9u => "x64",
+                    (ushort)12u => "ARM64",
+                    _ => "Unknown"
+                };
 
-                        break;
-                    }
-                }
+                label1.Text = TryGetValue(item, "AddressWidth");
+                label11.Text = AvailabilityToString(TryGetValue<ushort>(item, "Availability"));
+                label13.Text = TryGetValue(item, "Caption");
+                label15.Text = TryGetValue<ushort>(item, "CpuStatus") switch
+                {
+                    0 => "Unknown",
+                    1 => "CPU Enabled",
+                    2 => "CPU Disabled by User via BIOS Setup",
+                    3 => "CPU Disabled by BIOS (POST Error)",
+                    4 => "Idle",
+                    5 or 6 => "Unidentified value (Reserved)",
+                    7 => "Other",
+                    _ => "Unknown"
+                };
+                label17.Text = FormatClockSpeed(TryGetValue<uint?>(item, "CurrentClockSpeed") ?? uint.MaxValue);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
     {
         public string Id => "SystemInfo";
 
-        public string DisplayName => "System Information";
+        public string DisplayName => "System information";
 
         public string Description => "View information about your system.";
 
