@@ -36,8 +36,8 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.gradientControl1 = new FireBlade.SystemManager.Controls.GradientControl();
             this.label3 = new System.Windows.Forms.Label();
+            this.gradientControl1 = new FireBlade.SystemManager.Controls.GradientControl();
             this.SuspendLayout();
             // 
             // button1
@@ -129,6 +129,17 @@
             this.linkLabel4.Text = "Microsoft Windows Forms";
             this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label3.Location = new System.Drawing.Point(396, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Build 0A31:17B";
+            // 
             // gradientControl1
             // 
             this.gradientControl1.Color1 = System.Drawing.Color.Cyan;
@@ -144,17 +155,6 @@
             this.gradientControl1.X2 = 1F;
             this.gradientControl1.Y1 = 0F;
             this.gradientControl1.Y2 = 0F;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(396, 98);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 15);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Build 0A31:14B";
             // 
             // AboutDlg
             // 
