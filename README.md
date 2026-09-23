@@ -18,3 +18,4 @@
 
 - To publish your plugin, see the [System-Manager-Plugins](https://github.com/FireBlade211/System-Manager-Plugins) repository.
 - To learn how to create a plugin, see the documentation by selecting **Help** -> **Plugin Documentation** inside **System Manager**.
+- To find and install plugins, go to **Settings** -> **Plugins** -> **Get more Plugins**.
