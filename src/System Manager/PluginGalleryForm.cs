@@ -55,7 +55,7 @@ namespace FireBlade.SystemManager
             _idToSelect = id;
         }
 
-        public const string RepositoryName = "FireBlade211/System-Manager-Plugins-Test";
+        public const string RepositoryName = "FireBlade211/System-Manager-Plugins";
 
         private async void LoadPlugins()
         {
