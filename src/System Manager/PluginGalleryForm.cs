@@ -120,7 +120,6 @@ namespace FireBlade.SystemManager
                                 var lvi = new ListViewItem
                                 {
                                     Text = info.Name,
-                                    ToolTipText = info.Description,
                                     SubItems =
                                     {
                                         new ListViewItem.ListViewSubItem
@@ -136,7 +135,6 @@ namespace FireBlade.SystemManager
                                 };
 
                                 i.ListItem = lvi;
-
                                 infos.Add(i);
 
                                 listView1.Items.Add(lvi);
@@ -431,6 +429,8 @@ namespace FireBlade.SystemManager
             {
                 label1.Text = info.Info.Name;
                 label2.Text = info.Info.Description;
+                toolTip1.SetToolTip(label2, info.Info.Description);
+
                 label3.Text = $"ID: {Path.GetFileNameWithoutExtension(info.DllItem.Name)}";
                 label4.Text = $"Size: {FormatFileSize(info.DllItem.Size)}";
                 label5.Text = $"SHA-1 (Git blob): {info.DllItem.SHA}";
