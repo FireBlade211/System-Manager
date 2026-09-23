@@ -44,6 +44,11 @@
 			<param name="ImageNumber" value="19">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Quickstart Guide">
+			<param name="Local" value="guide\quickstart.htm">
+			<param name="ImageNumber" value="20">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Debugging Plugins">
 			<param name="Local" value="guide\debug.htm">
 			<param name="ImageNumber" value="37">
@@ -112,6 +117,37 @@
 			<param name="Name" value="IAboutContract (contract)">
 			<param name="Local" value="api\IAboutContract.htm">
 			<param name="ImageNumber" value="35">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="User Experience Guidelines">
+		<param name="Local" value="ux\root.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Controls">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Command Buttons">
+				<param name="Local" value="ux\controls\cmdbtn.htm">
+				<param name="ImageNumber" value="19">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Layout">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Pages">
+				<param name="Local" value="ux\layout\page.htm">
+				<param name="ImageNumber" value="35">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Wording and Typography">
+			<param name="Local" value="ux\text.htm">
+			<param name="ImageNumber" value="11">
 			</OBJECT>
 	</UL>
 </UL>

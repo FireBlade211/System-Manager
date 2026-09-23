@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Page Layout</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Page Layout</H1>
+<P>This page shows the guidelines for how your plugin's pages should be laid out.</P>
+
+<P>Layout is the sizing, spacing, and placement of content within a window or page. Effective layout is crucial in helping users find what they are looking for quickly, as well as making the appearance visually appealing. Effective layout can make the difference between designs that users immediately understand and those that leave users feeling puzzled and overwhelmed.</P>
+
+<H2>Spacing</H2>
+
+<P>Providing generous (but not excessive) space makes the layout feel more comfortable and easier to parse. Effective space isn't unused space it plays an important role in improving the ability for users to scan, and also adds to visual appeal of your design.</P>
+
+A layout has good spacing when:
+
+<UL>
+<LI>Overall, the UI surface feels comfortable and doesn't feel cramped.</LI>
+<LI>The space appears uniform and balanced.</LI>
+<LI>Related elements are close together and unrelated elements are relatively far apart.</LI>
+<LI>There is no dead space between controls that are meant to be together.</LI>
+</UL>
+
+<H2>Adaptive layouts</H2>
+<P>The main <B>System Manager</B> window is a resizable window, which means your plugin page has to be able to properly scale across different sizes. The reason users resize a window is to take advantage of the additional screen space, so the content should expand accordingly by giving more space to the UI elements that need it. Make sure your layout can properly adapt to different sizes.</P>
+
+<P>That said, pages can be stretched too wide. For example, many settings pages can become unwieldy when the content is wider than 600 relative pixels. In this case, it's better not to resize the content area beyond this maximum width or change the content's origin as the window is resized larger. Instead, keep a maximum width and a fixed upper-left origin.</P>
+
+<P>Text becomes difficult to read as the line length increases. For text, consider a maximum line length of 80 characters to make the text easy to read. (Characters include letters, punctuation, and spaces.)</P>
+
+<P>Finally, pages also need to use screen space effectively when made smaller, by making resizable content smaller and by removing space from UI elements that can work effectively without it. At some point, the page or its UI elements become too small to be usable, so they should be assigned a minimum size or some elements should be removed completely.</P>
+
+<H2>Focus</H2>
+
+<P>A layout has focus when there is one obvious place to look first. Focus is important to show users where to start scanning your page. Without clear focus, the user's eye will wander aimlessly. The focal point should be something important that users need to find and understand quickly, and should have the greatest visual emphasis. The upper-left corner is the natural focal point for most pages.</P>
+
+<P>There should be only one focal point. Just as in real life, the eye can focus on only one thing at a time, users can't focus on multiple places simultaneously.</P>
+
+<P>To make a UI element the focal point, you can give it visual emphasis by:</P>
+
+<UL>
+<LI>Placing it in the upper-left or upper-center portion of the surface.</LI>
+<LI>Using interactive controls that are important and readily comprehensible.</LI>
+<LI>Using prominent text, such as a main instruction.</LI>
+<LI>Giving the controls default selection and initial input focus.</LI>
+<LI>Placing the controls in a different colored background.</LI>
+</UL>
+
+<P>If you give a UI element visual emphasis, make sure that attention is warranted.</P>
+
+<H2>Grouping</H2>
+
+<P>A layout has grouping when logically related UI elements have a clear visual relationship. Groups are important because it is easier for users to understand and focus on a group of related items than the items individually. Groups make a layout appear simpler and easier to parse.</P>
+
+<P>You can show grouping in the following ways (in increasing heaviness):</P>
+
+<UL>
+<LI><B>Layout:</B> You can group related controls next to each other and put extra spacing between unrelated controls.</LI>
+<LI><B>Separators:</B> A separator is a horizontal or vertical line that unifies a group of controls. Separators provide a simpler, cleaner look. However, unlike group boxes, they work best when they span the full surface.</LI>
+<LI><B>Group boxes:</B> A group box is a labeled rectangular frame that surrounds a set of related controls.</LI>
+<LI><B>Backgrounds:</B> You can use backgrounds to emphasize or de-emphasize different types of content.</LI>
+</UL>
+
+<P>To avoid visual clutter, the lightest weight grouping that does the job well is the best choice.</P>
+
+<P>Regardless of the grouping style, you can use indenting to show the relationship of the controls within a group. Controls that are peers to each other should be left-aligned, and dependent controls are indented 12 DLUs or 18 relative pixels.</P>
+
+<P>A layout has good grouping when:</P>
+
+<UL>
+<LI>The page has at most 7 groups.</LI>
+<LI>The purpose of each group is obvious.</LI>
+<LI>The relationship of controls within each group is obvious, especially control dependency.</LI>
+<LI>The grouping simplifies the content rather than making it more complex.</LI>
+</UL>
+
+<H2>Guidelines</H2>
+
+<H3>Screen resolution</H3>
+
+<UL>
+<LI><B>Support the minimum Windows effective resolution of 800x600 pixels.</B> For critical pages that must work in safe mode, support an effective resolution of 640x480 pixels.</LI>
+</UL>
+
+<H3>Sizing</H3>
+
+<UL>
+<LI><B>For dialog boxes, use a balanced height to width aspect ratio.</B> An aspect ratio between 3:5 and 5:3 is preferred, although an aspect ratio of 1:3 can be used for message dialog boxes (such as errors and warnings).</LI>
+<LI><B>For text documents,</B> consider a maximum line length of 80 characters to make the text easy to read. (Characters include letters, punctuation, and spaces.)</LI>
+<LI><B>Progressively larger window sizes must show progressively more information on your page.</B> Make sure that at least one portion or control has resizable content.</LI>
+<LI><B>Keep the upper-left origin of the page content fixed as the window is resized.</B> Don't move the origin to balance the content as the window size changes.</LI>
+<LI><B>Set a maximum content size if the content can be too stretched too wide.</B> If the content becomes unwieldy, don't resize the content area beyond its maximum width or change the content's origin as the window is resized larger. Instead, keep a maximum width and a fixed upper-left origin.</LI>
+<LI><B>Consider altering the presentation to make the content usable at smaller sizes.</B></LI>
+</UL>
+
+<H3>Control Size</H3>
+
+<UL>
+<LI><B>Make all interactive controls at least relative 16x16 pixels.</B> Doing so works well for all input devices, including Windows Tablet and Touch Technology.</LI>
+<LI><B>Size controls to avoid truncated data.</B> Don't truncate data that must be read to perform a task. Size list view columns to avoid truncated data.</LI>
+<LI><B>Size controls to eliminate unnecessary scrolling.</B> Make controls slightly larger if doing so eliminates a scrollbar. There should be few vertical scrollbars and no unnecessary horizontal scrollbars.</LI>
+<LI><B>Reduce the number of control sizes on a surface.</B> Prefer using the standard recommended control sizes and when necessary, use a few consistently sized larger or smaller controls. Try to use a single width for list boxes and tree views, and no more than three widths for command buttons and drop-down lists. However, text box and combo box widths should suggest the length of their longest or expected input.</LI>
+<LI><B>For controls that are sized based on their text, include an additional 30 percent (up to 200 percent for shorter text) for any text that will be localized.</B> This guideline assumes the layout is designed using English text. Note also that this guideline refers to localized text, not numbers.</LI>
+<LI><B>Extend static text controls, check boxes, and radio buttons to the maximum width that will fit in the layout.</B> Doing so avoids truncation from variable length text and localization.</LI>
+</UL>
+
+<H3>Control Spacing</H3>
+
+<UL>
+<LI><B>If controls aren't touching, have at least 3 DLUs (5 relative pixels) of space between them.</B> Otherwise, users may click on inactive space between the controls. Since clicking inactive space has no result or visual feedback, users are often uncertain what went wrong.</LI>
+</UL>
+
+<H3>Placement</H3>
+
+<UL>
+<LI><B>Arrange the UI elements within a surface to flow naturally in a left-to-right, top-to-bottom order (in Western cultures).</B> The placement of the UI elements conveys their relationship and should mirror the steps to perform the task.</LI>
+<LI><B>Place UI elements that initiate a task in the upper-left corner or upper-center.</B> Give the UI element that users should look at first the greatest visual emphasis.</LI>
+<LI><B>Place related UI elements together,</B> and separate unrelated elements.</LI>
+<LI><B>Place frequently used elements before infrequently used elements</B> in the scan path.</LI>
+</UL>
+
+<H3>Focus</H3>
+
+<UL>
+<LI><B>Choose a single UI element that users need to look at first</B> to be the focal point. The focal point should be something important that users need to find and understand quickly.</LI>
+<LI><B>Place the focal point in the upper-left corner or upper-center.</B></LI>
+<LI><B>Give the focal point the greatest visual emphasis</B>, such as prominent text, default selection, or initial input focus.</LI>
+</UL>
+
+<H3>Accessibility</H3>
+
+<UL>
+<LI><B>Don't use layout as the only means to convey important information about a UI.</B> Users who have visual impairments may not be able to interpret this presentation. For example, make sure that controls labels communicate their relationship to other items.</LI>
+<LI><B>Don't embed subordinate controls within control labels to create a sentence or phrase.</B> Such associations are based purely on layout and aren't handled well by keyboard navigation or accessibility assistive technologies. Furthermore, this technique isn't localizable because sentence structure varies with language.</LI>
+<LI><B>Make grouping accessible.</B> Groups defined by window panes, group boxes, separators, text labels, and aggregators are automatically handled by accessibility aids. However, groups defined only by placement and backgrounds are not, and must be defined programmatically for accessibility.</LI>
+</UL>
+
+</BODY>
+</HTML>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Command Buttons</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Command Buttons</H1>
+
+<P>Command buttons allow users to initiate immediate actions.</P>
+
+<IMG SRC="ok.png" ALT="Highlighted button with the text &quot;OK&quot;"></IMG>
+
+<P>The default command button is invoked when users press the Enter key. It is assigned by the developer, but any command button becomes the default when users tab to it.</P>
+
+<P>While command buttons are used for immediate actions, more information might be needed to perform the action. Indicate a command that needs additional information (including confirmation) by adding an ellipsis at the end of the button label.</P>
+
+<P><B>Proper use of ellipses is important to indicate that users can make further choices</B> before performing the action, or even cancel the action entirely. The visual cue offered by an ellipsis allows users to explore your software without fear.</P>
+
+<P><B>Note: When determining if a command button needs an ellipsis, don't use the need to elevate privileges as a factor. Elevation isn't information needed to perform a command (rather, it's for permission) and the need to elevate is indicated with the security shield.</B></P>
+
+<H2>Guidelines</H2>
+
+<UL>
+<LI><B>Display a busy pointer</B> if the result of clicking a command button isn't instantaneous. Without feedback, users might assume that the click didn't happen and click again.</LI>
+<LI><B>For each window make the command buttons the same width.</B> If that's impractical, limit the number of different widths for command buttons with text labels to two.</LI>
+<LI><B>When another control interoperates with a command button, such as a text box with a Browse button,</B> denote the relationship by placing the command button in one of three positions relative to the other control: <I>top-right</I>, <I>bottom-left</I>, or <I>vertically centered</I>.</LI>
+<LI><B>Don't use narrow, short, or tall command buttons with text labels because they tend to look unprofessional.</B> Try to work with the default widths and heights.</LI>
+<LI><B>Don't use command buttons to set state.</B> Use radio buttons or check boxes instead. Command buttons are only for initiating actions.</LI>
+<LI><B>Include a default command button on every dialog box.</B> Select the safest (to prevent loss of data or system access) and most secure command to be the default. If safety and security aren't factors, select the most likely or convenient command.</LI>
+<LI><B>Don't make a destructive action the default command button</B> unless there is an easy way to undo the command.</LI>
+<LI>Label every command button.</LI>
+<LI><B>For short browse buttons (labeled "...")</B>, the internal label should be Browse.</LI>
+<LI><B>Assign a unique access key.</B> Don't assign access keys to OK and Cancel buttons, because Enter is the access key for the default button (which is usually the OK button), and Esc is the access key for Cancel. Doing so makes the other access keys easier to assign. Don't assign access keys to short browse buttons (labeled "..."), because they can't be assigned uniquely.</LI>
+<LI><B>Prefer specific labels over generic ones.</B> Ideally users shouldn't have to read anything else to understand the label. Users are far more likely to read command button labels than static text. Don't rename the Cancel button if the meaning of cancel is unambiguous. Users shouldn't have to read all the buttons to determine which button cancels an action. However, rename Cancel if it is unclear what action is being canceled, such as when there are several pending actions.</LI>
+<LI><B>Start labels with an imperative verb</B> and clearly describe the action that the button performs. Don't use ending punctuation. The following standard labels are acceptable without verbs: <I>Advanced, Back, Details, Forward, Less, More, New, Next, No, OK, Options, Previous, Properties, Settings</I>, and <I>Yes</I>.</LI>
+<LI><P><B>For directional buttons</B>, use double angle brackets and have it point in the direction where the action takes place.
+<B>Correct:</B></P>
+
+<IMG SRC="dirbtn.png" ALT="Focused button with the text &quot;More details &gt;&gt;&quot;"></IMG>
+
+</LI>
+</UL>
+
+<H2>Common Labels</H2>
+
+The following table shows some common command button labels and their usage.
+
+<TABLE>
+<TR>
+<TH><STRONG>Button label</STRONG></TH>
+<TH><STRONG>Meaning</STRONG></TH>
+<TH><STRONG>Access key</STRONG></TH>
+</TR>
+
+<TR>
+<TD><B>Back</B></TD>
+<TD>In wizards and task flows, go to the previous page.</TD>
+<TD>'B'</TD>
+</TR>
+<TR>
+<TD><B>Browse...</B></TD>
+<TD>Display a dialog box to look for a file or object.</TD>
+<TD>'B' or 'r'</TD>
+</TR>
+<TR>
+<TD><B>Options</B></TD>
+<TD>Display the choices available to users for customizing a plugin.</TD>
+<TD>'O'</TD>
+</TR>
+<TR>
+<TD><B>Pause</B></TD>
+<TD>In progress dialog boxes, suspend the task.</TD>
+<TD>'P'</TD>
+</TR>
+<TR>
+<TD><B>Personalize</B></TD>
+<TD>Customize a core experience that is crucial to the user's personal identification with a plugin.</TD>
+<TD>'P'</TD>
+</TR>
+<TR>
+<TD><B>Preferences</B></TD>
+<TD>Don't use. Use <B>Options</B> instead.</TD>
+<TD>Not applicable.</TD>
+</TR>
+<TR>
+<TD><B>Properties</B></TD>
+<TD>Display the attributes and settings for an object.</TD>
+<TD>'P' or first 'r'</TD>
+</TR>
+<TR>
+<TD><B>Save</B></TD>
+<TD>Save a group of settings, or save a file or object using its current name.</TD>
+<TD>'S'</TD>
+</TR>
+<TR>
+<TD><B>Save as...</B></TD>
+<TD>Save a file or object using a specified name.</TD>
+<TD>Second 'a'</TD>
+</TR>
+<TR>
+<TD><B>Settings</B></TD>
+<TD>Don't use. Use <B>Options</B> instead.</TD>
+<TD>Not applicable.</TD>
+</TR>
+<TR>
+<TD><B>Troubleshoot</B></TD>
+<TD>Don't use. Use a specific Help link instead.</TD>
+<TD>Not applicable.</TD>
+</TR>
+</TABLE>
+
+<H2>Documentation</H2>
+
+<P>When referring to command buttons:</P>
+
+<UL>
+<LI>Use the exact label text, including its capitalization, but don't include the access key underscore or ellipsis. Don't include the word <I>button</I>.</LI>
+<LI>To describe user interaction, use <I>click</I>.</LI>
+<LI>When possible, format the label using bold text. Otherwise, put the label in quotation marks only if required to prevent confusion.</LI>
+</UL>
+
+<P><STRONG>Example:</STRONG> Click <B>Print</B> to print the document.</P>
+
+</BODY>
+</HTML>

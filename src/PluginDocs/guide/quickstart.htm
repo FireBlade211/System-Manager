@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Quickstart Guide</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Quickstart Guide</H1>
+
+<P><B>NOTE:</B> This guide assumes you are using Visual Studio.</P>
+
+<OL>
+<LI>Create a new <B>Visual Studio</B> <I>Class Library</I> project.</LI>
+<LI>Make sure to choose <B>.NET Framework 4.5.2</B> or an earlier, comaptible version.</LI>
+<LI>Create the project.</LI>
+<LI>Add a <I>Post-Build Action</I> similar to the following:
+
+<CODE>
+IF NOT EXIST "..\System Manager\plugins" MKDIR "..\System Manager\plugins"
+COPY "$(TargetPath)" "..\System Manager\plugins\$(TargetFileName)" /Y
+IF "$(ConfigurationName)" == "Debug" COPY "$(TargetDir)$(TargetName).pdb" "..\System Manager\plugins\$(TargetName).pdb" /Y
+</CODE>
+
+<P>Adjust the paths to point to your <B>System Manager</B> installation accordingly.</P>
+
+</LI>
+<LI>Add <B>FireBlade.SystemManager.Plugin.dll</B> and optionally <B>FireBlade.SystemManager.Helpers.dll</B> from your <B>System Manager</B> installation as a reference in your project.</LI>
+<LI>Define an implementation of the <B>IPlugin</B> contract and implement other contracts as required.</LI>
+
+</OL>
+
+</BODY>
+</HTML>

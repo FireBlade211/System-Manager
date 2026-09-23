@@ -14,6 +14,11 @@ h2 {
     font-family: Verdana;
 }
 
+h3 {
+   font-size: 10pt;
+   font-family: Verdana;
+}
+
 .subtle {
     color: #808080;
 }
@@ -26,4 +31,48 @@ a:hover {
     /* font-size: 10pt; */
     font-weight: bold;
     color: red;
+}
+
+
+code {
+    font-family: Consolas, monospace;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border: 1px solid gray;
+    padding: 2px;
+ }
+
+td {
+    border: 1px solid gray;
+     padding: 4px;
+}
+
+strong {
+     font-family: Tahoma;
+     font-size: 9pt;
+     font-weight: bold;
+}
+
+strong.alt {
+     font-family: Verdana;
+     font-size: 8pt;
+     font-weight: bold;
+}
+
+.bottom {
+    vertical-align: bottom;
+}
+
+.top {
+   vertical-align: top;
+}
+
+.middle {
+    vertical-align: middle;
 }
