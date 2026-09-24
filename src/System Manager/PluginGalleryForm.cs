@@ -15,6 +15,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using HAP = HtmlAgilityPack;
@@ -46,6 +47,9 @@ namespace FireBlade.SystemManager
         public PluginGalleryForm()
         {
             InitializeComponent();
+
+            DeserializeSources(PluginGallery.Default.PluginSources);
+            comboBox1.SelectedIndex = 0;
         }
 
         private string _idToSelect;
@@ -55,7 +59,17 @@ namespace FireBlade.SystemManager
             _idToSelect = id;
         }
 
-        public const string RepositoryName = "FireBlade211/System-Manager-Plugins";
+        public string RepositoryName
+        {
+            get
+            {
+                if (comboBox1.SelectedIndex != 0)
+                    if (comboBox1.SelectedItem is PluginSourceItem src)
+                        return src.Repository;
+
+                return "FireBlade211/System-Manager-Plugins";
+            }
+        }
 
         private async void LoadPlugins()
         {
@@ -263,7 +277,7 @@ namespace FireBlade.SystemManager
 
         private void PluginGalleryForm_Load(object sender, EventArgs e)
         {
-            LoadPlugins();
+            //LoadPlugins();
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -590,7 +604,7 @@ namespace FireBlade.SystemManager
             button3.Text = _expanded ? "<< &Hide details" : "&Show details >>";
 
             _startSize = Size;
-            _targetSize = _expanded ? new Size(948, 422) : new Size(615, 422);
+            _targetSize = _expanded ? new Size(948, 444) : new Size(615, 444);
 
             _animationStart = DateTime.UtcNow;
             _animationDuration = 100;
@@ -744,6 +758,117 @@ namespace FireBlade.SystemManager
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 Process.Start(e.Url.ToString());
         }
+
+        private int _lastSourceIdx = 0;
+        private List<PluginSourceItem> _sources = new List<PluginSourceItem>();
+
+        private string SerializeSources()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var src in _sources)
+            {
+                if (src.Temp) continue;
+
+                // note: the user cannot set these to contain newlines
+                sb.AppendLine(src.Name);
+                sb.AppendLine(src.Repository);
+            }
+
+            return sb.ToString();
+        }
+
+        private void DeserializeSources(string data)
+        {
+            var lines = data
+                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => x.Trim())
+                .ToArray();
+
+            for (int i = 0; i + 1 < lines.Length; i += 2)
+            {
+                var item = new PluginSourceItem
+                {
+                    Name = lines[i],
+                    Repository = lines[i + 1],
+                    Temp = false
+                };
+
+                _sources.Add(item);
+                comboBox1.Items.Insert(comboBox1.Items.Count - 3, item);
+            }
+        }
+
+        private bool _sourceSelLock = false;
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox1.BeginUpdate();
+            int sel = comboBox1.SelectedIndex;
+
+            if (sel >= comboBox1.Items.Count - 2 - 1)
+            {
+                _sourceSelLock = true;
+
+                comboBox1.SelectedIndex = _lastSourceIdx;
+                comboBox1.EndUpdate();
+
+                if (sel == comboBox1.Items.Count - 1 - 1)
+                {
+                    var dlg = new AddPluginSourceForm();
+                    var result = dlg.ShowDialog();
+
+                    if (result == DialogResult.OK)
+                    {
+                        var item = new PluginSourceItem
+                        {
+                            Name = dlg.textBox1.Text,
+                            Repository = dlg.textBox2.Text,
+                            Temp = dlg.checkBox1.Checked
+                        };
+
+                        comboBox1.Items.Insert(comboBox1.Items.Count - 3, item);
+                        _sources.Add(item);
+
+                        PluginGallery.Default.PluginSources = SerializeSources();
+                        PluginGallery.Default.Save();
+                    }
+                }
+                else if (sel == comboBox1.Items.Count - 1 - 0)
+                {
+                    var dlg = new EditPluginSourcesForm(_sources);
+                    dlg.ShowDialog();
+
+                    comboBox1.BeginUpdate();
+
+                    comboBox1.Items.Clear();
+
+                    comboBox1.Items.Add("Official Repository");
+                    comboBox1.Items.Add("--------------------------------------");
+                    comboBox1.Items.Add("Add new source...");
+                    comboBox1.Items.Add("Edit sources...");
+
+                    PluginGallery.Default.PluginSources = SerializeSources();
+                    PluginGallery.Default.Save();
+
+                    _sources.Clear();
+                    DeserializeSources(PluginGallery.Default.PluginSources);
+
+                    comboBox1.SelectedIndex = _lastSourceIdx;
+                    comboBox1.EndUpdate();
+                }
+
+                _sourceSelLock = false;
+                return;
+            }
+            else
+                comboBox1.EndUpdate();
+
+            _lastSourceIdx = sel;
+
+            if (!_sourceSelLock)
+                LoadPlugins();
+        }
     }
 
     public class RepositoryItem
@@ -845,5 +970,14 @@ namespace FireBlade.SystemManager
 
         [JsonProperty("encoding")]
         public string Encoding { get; set; }
+    }
+
+    public class PluginSourceItem
+    {
+        public string Name { get; set; }
+        public string Repository { get; set; }
+        public bool Temp { get; set; }
+
+        public override string ToString() => Name;
     }
 }

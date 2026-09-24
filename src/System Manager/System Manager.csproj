@@ -68,6 +68,7 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -92,8 +93,20 @@
     <Compile Include="AboutDlg.Designer.cs">
       <DependentUpon>AboutDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPluginSourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPluginSourceForm.Designer.cs">
+      <DependentUpon>AddPluginSourceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GradientControl.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EditPluginSourcesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPluginSourcesForm.Designer.cs">
+      <DependentUpon>EditPluginSourcesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FindPage.cs">
       <SubType>UserControl</SubType>
@@ -114,6 +127,11 @@
       <DependentUpon>GoDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CursorHelper.cs" />
+    <Compile Include="Helpers\PluginGallery.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>PluginGallery.settings</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\PluginHelper.cs" />
     <Compile Include="Helpers\TaskBarList.cs" />
     <Compile Include="Helpers\VS2005ToolStripRenderer.cs" />
@@ -136,6 +154,12 @@
     </Compile>
     <EmbeddedResource Include="AboutDlg.resx">
       <DependentUpon>AboutDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPluginSourceForm.resx">
+      <DependentUpon>AddPluginSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPluginSourcesForm.resx">
+      <DependentUpon>EditPluginSourcesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindPage.resx">
       <DependentUpon>FindPage.cs</DependentUpon>
@@ -163,6 +187,10 @@
       <DependentUpon>SettingsDlg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="Helpers\PluginGallery.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>PluginGallery.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

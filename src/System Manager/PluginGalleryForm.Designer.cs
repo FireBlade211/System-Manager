@@ -48,7 +48,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -60,6 +59,9 @@
             this.progressBar2 = new WindowsFormsAero.ProgressBar();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -71,7 +73,7 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(13, 353);
+            this.button1.Location = new System.Drawing.Point(13, 376);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -86,7 +88,7 @@
             this.columnHeader3});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(13, 13);
+            this.listView1.Location = new System.Drawing.Point(13, 36);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
@@ -115,7 +117,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(848, 51);
+            this.button2.Location = new System.Drawing.Point(428, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -125,7 +127,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(600, 51);
+            this.progressBar1.Location = new System.Drawing.Point(177, 7);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(242, 23);
             this.progressBar1.TabIndex = 3;
@@ -133,7 +135,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(487, 353);
+            this.button3.Location = new System.Drawing.Point(487, 376);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 23);
             this.button3.TabIndex = 4;
@@ -153,10 +155,10 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tabControl1.Location = new System.Drawing.Point(601, 80);
+            this.tabControl1.Location = new System.Drawing.Point(601, 50);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(326, 295);
+            this.tabControl1.Size = new System.Drawing.Size(326, 349);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -165,7 +167,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(318, 267);
+            this.tabPage1.Size = new System.Drawing.Size(318, 321);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Description";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -178,7 +180,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(318, 267);
+            this.tabPage2.Size = new System.Drawing.Size(318, 321);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Source Code";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -192,7 +194,7 @@
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(318, 267);
+            this.tabPage3.Size = new System.Drawing.Size(318, 321);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Details";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -246,24 +248,15 @@
             this.tabPage4.Controls.Add(this.textBox1);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(318, 267);
+            this.tabPage4.Size = new System.Drawing.Size(318, 321);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "License";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(601, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoEllipsis = true;
-            this.label1.Location = new System.Drawing.Point(644, 8);
+            this.label1.Location = new System.Drawing.Point(644, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(283, 16);
             this.label1.TabIndex = 7;
@@ -273,7 +266,7 @@
             // 
             this.label2.AutoEllipsis = true;
             this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(645, 28);
+            this.label2.Location = new System.Drawing.Point(645, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(277, 13);
             this.label2.TabIndex = 8;
@@ -318,7 +311,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(250, 353);
+            this.button5.Location = new System.Drawing.Point(509, 7);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 9;
@@ -342,7 +335,7 @@
             this.webBrowser1.Margin = new System.Windows.Forms.Padding(0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(312, 261);
+            this.webBrowser1.Size = new System.Drawing.Size(312, 315);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
             // 
@@ -353,15 +346,43 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(318, 267);
+            this.textBox1.Size = new System.Drawing.Size(318, 321);
             this.textBox1.TabIndex = 0;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::FireBlade.SystemManager.Properties.Settings.Default, "DeveloperMode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Enabled = global::FireBlade.SystemManager.Properties.Settings.Default.DeveloperMode;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Official Repository",
+            "--------------------------------------",
+            "Add new source...",
+            "Edit sources..."});
+            this.comboBox1.Location = new System.Drawing.Point(14, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(157, 21);
+            this.comboBox1.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.comboBox1, "Plugin Source");
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(601, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // PluginGalleryForm
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 383);
+            this.ClientSize = new System.Drawing.Size(932, 405);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -426,5 +447,7 @@
         private WindowsFormsAero.ProgressBar progressBar2;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
