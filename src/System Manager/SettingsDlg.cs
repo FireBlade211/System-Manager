@@ -21,14 +21,19 @@ namespace FireBlade.SystemManager
     public partial class SettingsDlg : Form
     {
         public static bool IsActive { get; set; }
+        private Form1 _form;
 
-        public SettingsDlg()
+        public SettingsDlg(Form1 form)
         {
             InitializeComponent();
+
             IsActive = true;
+            _form = form;
 
             if (!string.IsNullOrEmpty(Settings.Default.GitHubToken))
                 textBox2.Text = UnprotectToken(Settings.Default.GitHubToken);
+
+            comboBox1.SelectedIndex = Settings.Default.ColorScheme;
         }
 
         public void NavigateToPlugins()
@@ -187,6 +192,7 @@ namespace FireBlade.SystemManager
             if (_saving) return;
 
             Settings.Default.Reload();
+            _form._toolStripColorTable.Scheme = (ColorScheme)Settings.Default.ColorScheme;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -256,6 +262,14 @@ namespace FireBlade.SystemManager
                 if (kvp.Value.QueryContract(ContractIdentifiers.SettingsContractIdentifier) is ISettingsContract contract)
                     contract.ShowDialog(this);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Default.ColorScheme = comboBox1.SelectedIndex;
+
+            _form._toolStripColorTable.Scheme = (ColorScheme)comboBox1.SelectedIndex;
+            _form.RedrawAllToolbars();
         }
     }
 }

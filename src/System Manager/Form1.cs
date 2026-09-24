@@ -20,10 +20,11 @@ namespace FireBlade.SystemManager
 {
     public partial class Form1 : Form
     {
+        public BlueColorTable _toolStripColorTable;
+
         public Form1()
         {
             InitializeComponent();
-            LoadSettings();
 
             imageListSmall.Images.Add(StockIconHelper.LoadIcon(
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "ieframe.dll"),
@@ -40,11 +41,15 @@ namespace FireBlade.SystemManager
             //imageListSmall.Images.Add(Resources.Home16);
             //imageListLarge.Images.Add(Resources.Home32);
 
-            var renderer = new ToolStripProfessionalRenderer(new BlueColorTable());
+            _toolStripColorTable = new BlueColorTable();
+
+            var renderer = new ToolStripProfessionalRenderer(_toolStripColorTable);
             renderer.RoundedEdges = true;
 
             toolStrip1.Renderer = renderer;
             menuStrip1.Renderer = renderer;
+
+            LoadSettings();
         }
 
         private void treeView1_MouseMove(object sender, MouseEventArgs e)
@@ -69,6 +74,8 @@ namespace FireBlade.SystemManager
         private const uint LVS_EX_DOUBLEBUFFER = 0x00010000;
         private const uint LVS_EX_INFOTIP = 0x00000400;
 
+        private IPageContract _currentPageContract = null;
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (Settings.Default.ShowPageNameInTitleBar)
@@ -83,6 +90,8 @@ namespace FireBlade.SystemManager
 
             if (children.Any())
             {
+                _currentPageContract = null;
+
                 var found = contentPanel.Controls.OfType<ListView>().FirstOrDefault();
                 if (found != null)
                 {
@@ -165,6 +174,11 @@ namespace FireBlade.SystemManager
                     var content = node.CreateContent();
                     content.Dock = DockStyle.Fill;
 
+                    _currentPageContract = node;
+
+                    if (node.QueryContract(ContractIdentifiers.ThemeContractIdentifier) is IThemeContract contract)
+                        contract.OnColorSchemeChanged(_toolStripColorTable.Scheme);
+
                     contentPanel.Controls.Clear();
                     contentPanel.Controls.Add(content);
 
@@ -236,7 +250,7 @@ namespace FireBlade.SystemManager
         {
             var lv = sender as ListView;
             if (lv != null)
-            {            
+            {
                 var selectedItem = lv.SelectedItems[0];
 
                 if (selectedItem.Tag is TreeNode node)
@@ -378,6 +392,7 @@ namespace FireBlade.SystemManager
             var page = new FindPage(this);
             page.Dock = DockStyle.Fill;
 
+            _currentPageContract = null;
             contentPanel.Controls.Clear();
             contentPanel.Controls.Add(page);
 
@@ -495,11 +510,25 @@ namespace FireBlade.SystemManager
 
             if (!Settings.Default.ShowPageNameInTitleBar)
                 this.Text = "System Manager";
+
+            _toolStripColorTable.Scheme = (ColorScheme)Settings.Default.ColorScheme;
+            
+            if (_currentPageContract?.QueryContract(ContractIdentifiers.ThemeContractIdentifier) is IThemeContract contract)
+                contract.OnColorSchemeChanged(_toolStripColorTable.Scheme);
+        }
+
+        public void RedrawAllToolbars()
+        {
+            toolStrip1.Refresh();
+            menuStrip1.Refresh();
+
+            if (_currentPageContract?.QueryContract(ContractIdentifiers.ThemeContractIdentifier) is IThemeContract contract)
+                contract.OnColorSchemeChanged(_toolStripColorTable.Scheme);
         }
 
         private void systemManagerSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dlg = new SettingsDlg();
+            var dlg = new SettingsDlg(this);
             dlg.ShowDialog();
 
             LoadSettings();
@@ -507,7 +536,7 @@ namespace FireBlade.SystemManager
 
         private void viewInstalledPluginsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dlg = new SettingsDlg();
+            var dlg = new SettingsDlg(this);
             
             dlg.NavigateToPlugins();
             dlg.ShowDialog();

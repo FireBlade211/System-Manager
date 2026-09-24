@@ -55,5 +55,10 @@ namespace FireBlade.SystemManager.Plugin
         /// Gets the identifier for the <see cref="IAboutContract"/> contract.
         /// </summary>
         public const string AboutContractIdentifier = "FireBlade.SystemManager.Plugin.IAboutContract";
+
+        /// <summary>
+        /// Gets the identifier for the <see cref="IThemeContract"/> contract.
+        /// </summary>
+        public const string ThemeContractIdentifier = "FireBlade.SystemManager.Plugin.IThemeContract";
     }
 }

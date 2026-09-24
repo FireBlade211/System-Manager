@@ -70,5 +70,17 @@ namespace FireBlade.SystemManager.Properties {
                 this["DeveloperMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ColorScheme {
+            get {
+                return ((int)(this["ColorScheme"]));
+            }
+            set {
+                this["ColorScheme"] = value;
+            }
+        }
     }
 }

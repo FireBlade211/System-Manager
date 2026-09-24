@@ -17,10 +17,14 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
 {
     public partial class ServicesPage : UserControl
     {
+        public BlueColorTable _table;
+
         public ServicesPage()
         {
             InitializeComponent();
             Load += ServicesPage_Load;
+
+            contextMenuStrip1.Renderer = new ToolStripProfessionalRenderer(_table = new BlueColorTable());
         }
 
         private const uint ECM_FIRST = 0x1500;
@@ -75,7 +79,6 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             listView1.EndUpdate();
 
             propertiesToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Return;
-            contextMenuStrip1.Renderer = new ToolStripProfessionalRenderer(new BlueColorTable());
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)

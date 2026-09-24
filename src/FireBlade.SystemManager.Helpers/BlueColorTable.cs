@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using FireBlade.SystemManager.Plugin;
 
 namespace FireBlade.SystemManager.Helpers
 {
@@ -1679,6 +1680,23 @@ namespace FireBlade.SystemManager.Helpers
             return string.Empty;
         }
 
+        private ColorScheme _scheme;
+
+        public ColorScheme Scheme
+        {
+            get => _scheme;
+            set
+            {
+                _scheme = value;
+
+                if (this.professionalRGB == null)
+                {
+                    this.professionalRGB = new Dictionary<BlueColorTable.KnownColors, Color>(212);
+                }
+                this.InitThemedColors(ref this.professionalRGB);
+            }
+        }
+
         // Token: 0x06004BB6 RID: 19382 RVA: 0x0011686C File Offset: 0x0011586C
         internal void InitThemedColors(ref Dictionary<BlueColorTable.KnownColors, Color> rgbTable)
         {
@@ -1718,8 +1736,24 @@ namespace FireBlade.SystemManager.Helpers
             //    this.usingSystemColors = true;
             //}
             //this.InitCommonColors(ref rgbTable);
-            this.InitBlueLunaColors(ref rgbTable);
+
             this.usingSystemColors = false;
+
+            if (_scheme == ColorScheme.BlueLuna)
+                this.InitBlueLunaColors(ref rgbTable);
+            else if (_scheme == ColorScheme.OliveLuna)
+                this.InitOliveLunaColors(ref rgbTable);
+            else if (_scheme == ColorScheme.SilverLuna)
+                this.InitSilverLunaColors(ref rgbTable);
+            else if (_scheme == ColorScheme.System)
+            {
+                this.InitSystemColors(ref rgbTable);
+                this.usingSystemColors = true;
+            }    
+            else if (_scheme == ColorScheme.Royale)
+                this.InitRoyaleColors(ref rgbTable);
+
+            this.InitCommonColors(ref rgbTable);
         }
 
         // Token: 0x06004BB7 RID: 19383 RVA: 0x00116948 File Offset: 0x00115948

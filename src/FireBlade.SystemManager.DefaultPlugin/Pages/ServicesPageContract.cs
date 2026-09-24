@@ -16,18 +16,9 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
 
         public string Description => "View, start, stop and manage Windows services.";
 
-        public UserControl CreateContent() => new ServicesPage(); /* new UserControl
-        {
-            Controls =
-            {
-                new Label
-                {
-                    Dock = DockStyle.Fill,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Text = "Hello, World! This is the Services page that was received through a plugin!"
-                }
-            }
-        }; */
+        public ServicesPage _page;
+
+        public UserControl CreateContent() => _page = new ServicesPage();
 
         public IContract QueryContract(string contractIdentifier)
         {
@@ -35,6 +26,8 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             {
                 case ContractIdentifiers.IconContractIdentifier:
                     return new ServicesPageIconContract();
+                case ContractIdentifiers.ThemeContractIdentifier:
+                    return new ServicesPageThemeContract(this);
             }
             
             return null;
@@ -54,5 +47,22 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
 
             return ico != null;
         }
+    }
+
+    public class ServicesPageThemeContract : IThemeContract
+    {
+        public ServicesPageContract _contract;
+
+        public ServicesPageThemeContract(ServicesPageContract c)
+        {
+            _contract = c;
+        }
+
+        public void OnColorSchemeChanged(ColorScheme scheme)
+        {
+            _contract._page._table.Scheme = scheme;
+        }
+
+        public IContract QueryContract(string contractIdentifier) => null;
     }
 }

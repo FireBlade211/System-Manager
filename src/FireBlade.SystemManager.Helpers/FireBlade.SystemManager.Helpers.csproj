@@ -57,5 +57,11 @@
   <ItemGroup>
     <EmbeddedResource Include="textbox.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FireBlade.SystemManager.Plugin\FireBlade.SystemManager.Plugin.csproj">
+      <Project>{2c2657ec-7033-4874-a530-bb29c2af4a53}</Project>
+      <Name>FireBlade.SystemManager.Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
