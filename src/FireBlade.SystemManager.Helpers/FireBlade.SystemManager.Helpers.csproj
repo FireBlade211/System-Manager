@@ -46,6 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueColorTable.cs" />
+    <Compile Include="Controls\TaskPane.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TaskPaneGroup.cs" />
+    <Compile Include="Controls\TaskPaneLink.cs" />
     <Compile Include="HeadingControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -53,6 +58,7 @@
     <Compile Include="SimpleProgressDialog.cs" />
     <Compile Include="StockIconHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Resources\expander-silver-expanded.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="textbox.bmp" />
@@ -62,6 +68,27 @@
       <Project>{2c2657ec-7033-4874-a530-bb29c2af4a53}</Project>
       <Name>FireBlade.SystemManager.Plugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\expander-silver-collapsed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\expander-blue-collapsed.png" />
+    <EmbeddedResource Include="Resources\expander-blue-expanded.png" />
+    <EmbeddedResource Include="Resources\expander-green-collapsed.png" />
+    <EmbeddedResource Include="Resources\expander-green-expanded.png" />
+    <EmbeddedResource Include="Resources\expander-system-collapsed.png" />
+    <EmbeddedResource Include="Resources\expander-system-expanded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\expander-blue-collapsed-hover.png" />
+    <EmbeddedResource Include="Resources\expander-blue-expanded-hover.png" />
+    <EmbeddedResource Include="Resources\expander-green-collapsed-hover.png" />
+    <EmbeddedResource Include="Resources\expander-green-expanded-hover.png" />
+    <EmbeddedResource Include="Resources\expander-silver-collapsed-hover.png" />
+    <EmbeddedResource Include="Resources\expander-silver-expanded-hover.png" />
+    <EmbeddedResource Include="Resources\expander-system-collapsed-hover.png" />
+    <EmbeddedResource Include="Resources\expander-system-expanded-hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FireBlade.SystemManager.Helpers.Controls;
 
 namespace FireBlade.SystemManager.DefaultPlugin.Pages
 {
@@ -596,6 +597,16 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             });
 
             dlg.ShowDialog(this);
+        }
+
+        private void taskPane1_LinkClicked(object sender, TaskPaneLinkClickedEventArgs e)
+        {
+            MessageBox.Show($"Link clicked: {e.Link.Text}");
+        }
+
+        private void taskPane1_GroupExpandedChanged(object sender, TaskPaneGroupExpandedChangedEventArgs e)
+        {
+            MessageBox.Show($"Group: {e.Group.Title} expanded changed to: {e.Group.Expanded}");
         }
     }
 }

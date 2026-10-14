@@ -1,4 +1,5 @@
 ﻿using FireBlade.SystemManager.Helpers;
+using FireBlade.SystemManager.Helpers.Controls;
 using FireBlade.SystemManager.Plugin;
 using FireBlade.SystemManager.Properties;
 using Newtonsoft.Json;
@@ -87,6 +88,7 @@ namespace FireBlade.SystemManager
             ToolStripManager.RevertMerge(toolStrip1);
 
             toolStrip1.Items.Clear();
+            toolStrip1.Visible = true;
 
             if (children.Any())
             {
@@ -190,6 +192,11 @@ namespace FireBlade.SystemManager
                         //toolStrip1.Items.AddRange(tb.Items);
                         ToolStripManager.Merge(tb, toolStrip1);
                     }
+
+                    var tp = content.Controls.OfType<TaskPane>().FirstOrDefault();
+
+                    if (tp != null && tp.HideToolbarWhenActive)
+                        toolStrip1.Visible = false;
 
                     var menu = content.Controls.OfType<MenuStrip>().FirstOrDefault();
                     if (menu != null)
