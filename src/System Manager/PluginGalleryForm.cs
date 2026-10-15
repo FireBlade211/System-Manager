@@ -397,8 +397,7 @@ namespace FireBlade.SystemManager
 
                         if (result == DialogResult.Yes)
                         {
-                            Process.Start(Application.ExecutablePath, string.Join(" ", Environment.CommandLine.Split(' ').Skip(1)));
-                            Application.Exit();
+                            Application.Restart();
                         }
                     }
                 }
