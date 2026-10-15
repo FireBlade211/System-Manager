@@ -14,6 +14,8 @@ namespace FireBlade.SystemManager.Helpers
 {
     [Description("Represents a control that displays a heading.")]
     [ToolboxBitmap(typeof(HeadingControl), "FireBlade.SystemManager.Helpers.textbox.bmp")] // doesn't work
+    [Obsolete("This control is obsolete; use a Label control instead. See Wording and Typography page in the" +
+        " User Experience Guidelines section of the plugin documentation for more info.")]
     public class HeadingControl : Control
     {
         [DllImport("uxtheme.dll", CharSet = CharSet.Unicode, SetLastError = true)]
