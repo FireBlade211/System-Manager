@@ -572,45 +572,53 @@ namespace FireBlade.SystemManager
             {
                 dlg = SimpleProgressDialog.CreateDialog("Checking for updates", "Check for Updates", true);
                 dlg.AllowCancel = false;
-                dlg.ShowDialog(this);
             }
 
             try
             {
-                using (HttpClient client = new HttpClient())
+                var t = Task.Run(async () =>
                 {
-                    if (!string.IsNullOrEmpty(Settings.Default.GitHubToken))
-                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
-                            SettingsDlg.UnprotectToken(Settings.Default.GitHubToken));
-
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                    var ver = Assembly.GetCallingAssembly().GetName().Version;
-
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
-                    client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("System-Manager",
-                        $"{ver.Major}.{ver.Minor}"));
-
-                    var response = await client.GetAsync("https://api.github.com/repos/FireBlade211/System-Manager/releases/latest");
-                    response.EnsureSuccessStatusCode();
-
-                    string json = await response.Content.ReadAsStringAsync();
-
-                    var release = JsonConvert.DeserializeObject<JsonReleaseInfo>(json);
-                    var latest = Version.Parse(release.TagName.TrimStart('v'));
-
-                    // Check if it's a later release.
-                    if (latest > ver)
+                    using (HttpClient client = new HttpClient())
                     {
-                        var result = MessageBox.Show($"An update is available. ({release.TagName}).\n\nDo you want to download it now?",
-                            "Update available", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (!string.IsNullOrEmpty(Settings.Default.GitHubToken))
+                            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                                SettingsDlg.UnprotectToken(Settings.Default.GitHubToken));
 
-                        if (result == DialogResult.OK)
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                        var ver = Assembly.GetCallingAssembly().GetName().Version;
+
+                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
+                        client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("System-Manager",
+                            $"{ver.Major}.{ver.Minor}"));
+
+                        var response = await client.GetAsync("https://api.github.com/repos/FireBlade211/System-Manager/releases/latest");
+                        response.EnsureSuccessStatusCode();
+
+                        string json = await response.Content.ReadAsStringAsync();
+
+                        var release = JsonConvert.DeserializeObject<JsonReleaseInfo>(json);
+                        var latest = Version.Parse(release.TagName.TrimStart('v'));
+
+                        // Check if it's a later release.
+                        if (latest > ver)
                         {
-                            // For now, just send them to the download page (we can implement auto-installation later)
-                            Process.Start(release.HtmlUrl);
+                            var result = (DialogResult)Invoke(() => MessageBox.Show($"An update is available. ({release.TagName})." +
+                                $"\n\nDo you want to download it now?", "Update available", MessageBoxButtons.OKCancel, MessageBoxIcon.Question));
+
+                            if (result == DialogResult.OK)
+                            {
+                                // For now, just send them to the download page (we can implement auto-installation later)
+                                Process.Start(release.HtmlUrl);
+                            }
                         }
                     }
+                });
+
+                if (dlg != null)
+                {
+                    _ = t.ContinueWith(_ => dlg.Invoke((() => dlg.Close())));
+                    dlg.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -618,8 +626,6 @@ namespace FireBlade.SystemManager
                 MessageBox.Show($"An error occurred while checking for updates:\n\n{ex.Message}", null, MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }
-
-            dlg?.Close();
         }
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)

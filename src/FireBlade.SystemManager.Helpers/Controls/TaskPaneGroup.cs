@@ -25,12 +25,21 @@ namespace FireBlade.SystemManager.Helpers.Controls
             _timer.Tick += _timer_Tick;
         }
 
+        private bool _collectionAnimating = false;
+
         private void _links_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             foreach (var link in _links)
                 link._pane = _pane;
 
-            _pane?.Invalidate();
+            if (_expanded)
+            {
+                _animating = true;
+                _collectionAnimating = true;
+
+                _timer.Start();
+                _pane?.Invalidate();
+            }
         }
 
         private ObservableCollection<TaskPaneLink> _links;
@@ -79,7 +88,9 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            if (_animating)
+            if (_collectionAnimating)
+                _animationProgress = Math.Min(1.0, _animationProgress + 0.025);
+            else if (_animating)
                 _animationProgress = Math.Min(1.0, _animationProgress + 0.075);
 
             if (_widthAnimating)
@@ -88,6 +99,7 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
             if (_animating && _animationProgress >= 1.0)
             {
+                _collectionAnimating = false;
                 _animating = false;
                 _animationProgress = 0;
             }
@@ -223,8 +235,8 @@ namespace FireBlade.SystemManager.Helpers.Controls
             if (expanderClicked)
             {
                 _expanded = !_expanded;
-                _animating = true;
 
+                _animating = true;
                 _timer.Start();
 
                 _pane.Invalidate();
@@ -232,9 +244,14 @@ namespace FireBlade.SystemManager.Helpers.Controls
             }
             else
             {
+                var client = _pane.PointToClient(Cursor.Position);
+                var pt = new Point(
+                    client.X - _pane.AutoScrollPosition.X,
+                    client.Y - _pane.AutoScrollPosition.Y); ;
+
                 foreach (var link in _links)
                 {
-                    bool hit = link.HitTest(_pane.PointToClient(Cursor.Position));
+                    bool hit = link.HitTest(pt);
                     if (hit)
                     {
                         _pane.OnLinkClicked(new TaskPaneLinkClickedEventArgs(link));
@@ -323,6 +340,8 @@ namespace FireBlade.SystemManager.Helpers.Controls
             _timer.Start();
         }
 
+        private int _oldHeight = 0;
+
         internal protected virtual void Paint(Graphics g, ColorScheme scheme, int initialWidth, ref int y)
         {
             if (!Visible) return;
@@ -367,28 +386,37 @@ namespace FireBlade.SystemManager.Helpers.Controls
                     initialHeight += (int)Math.Round(link.Measure(g, width).Height);
 
             int height = initialHeight;
+            double opacity = 1.0f;
 
             if (_animating)
             {
                 double easing = _expanded
                     ? EaseOut(_animationProgress)
                     : 1.0 - EaseIn(_animationProgress);
+                
+                if (!_collectionAnimating)
+                    backColor = Color.FromArgb(
+                        (int)Math.Round(easing * 255),
+                        backColor);
 
-                backColor = Color.FromArgb(
-                    (int)Math.Round(easing * 255),
-                    backColor);
+                if (_collectionAnimating)
+                    height = (int)Math.Round(
+                        _oldHeight + (initialHeight - _oldHeight) * easing);
+                else
+                    height = (int)Math.Round(
+                        25 + (initialHeight - 25) * easing);
 
-                height = (int)Math.Round(
-                    25 + (initialHeight - 25) * easing);
+                if (!_collectionAnimating)
+                    opacity = easing;
             }
 
             using Brush backBrush = new SolidBrush(backColor);
 
-            if (scheme == ColorScheme.System)
+            if ((scheme is ColorScheme.System or ColorScheme.Royale) && (_expanded || _animating))
             {
                 using (Pen pen = new Pen(Color.FromArgb(212, 208, 200), 2))
                 {
-                    g.DrawRectangle(pen, new Rectangle(8, y, width, height));
+                    g.DrawRectangle(pen, new Rectangle(8, 25 + y - 1, width, height - 25 - 1));
                 }
             }
 
@@ -403,9 +431,9 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
                 g.FillRectangle(backBrush, rc);
 
-                g.DrawLine(Pens.White, new Point(rc.Left, rc.Top), new Point(rc.Left, rc.Bottom));
-                g.DrawLine(Pens.White, new Point(rc.Left, rc.Bottom), new Point(rc.Right, rc.Bottom));
-                g.DrawLine(Pens.White, new Point(rc.Right, rc.Bottom), new Point(rc.Right, rc.Top));
+                g.DrawLine(Pens.White, rc.Left, rc.Top, rc.Left, rc.Bottom - 1);
+                g.DrawLine(Pens.White, rc.Left, rc.Bottom - 1, rc.Right - 1, rc.Bottom - 1);
+                g.DrawLine(Pens.White, rc.Right - 1, rc.Bottom - 1, rc.Right - 1, rc.Top);
             }
 
 
@@ -432,7 +460,11 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
             _topRect = new RectangleF(8.0f, y - height, width + 1, 25);
 
-            FillRoundedTopRectangle(g, captionBrush, _topRect, 2);
+            if (scheme == ColorScheme.System)
+                g.FillRectangle(captionBrush, _topRect);
+            else
+                FillRoundedTopRectangle(g, captionBrush, _topRect, 2);
+
             g.DrawString(Title, TaskPane.Font, captionTextBrush, new RectangleF(12, (y - height) + 4, width - 28, 25),
                 new StringFormat(StringFormatFlags.NoWrap)
                 {
@@ -494,10 +526,10 @@ namespace FireBlade.SystemManager.Helpers.Controls
                         if (linkY + linkHeight > contentBottom)
                         {
                             int tempY = linkY;
-                            link.Paint(g, scheme, _rect.X + 4, width - 8, ref tempY);
+                            link.Paint(g, scheme, _rect.X + 4, width - 8, opacity, ref tempY);
                         }
                         else
-                            link.Paint(g, scheme, _rect.X + 4, width - 8, ref linkY);
+                            link.Paint(g, scheme, _rect.X + 4, width - 8, opacity, ref linkY);
                     }
                 }
                 finally
@@ -509,6 +541,8 @@ namespace FireBlade.SystemManager.Helpers.Controls
             // Keep the next group positioned at the animated group's bottom,
             // independently of how many links were painted.
             y = _rect.Bottom;
+
+            _oldHeight = height;
 
             //y += height;
             //y -= 25 + 2;

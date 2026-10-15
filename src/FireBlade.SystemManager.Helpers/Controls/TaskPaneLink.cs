@@ -128,7 +128,7 @@ namespace FireBlade.SystemManager.Helpers.Controls
             }
         }
 
-        //private Point _hoverPt;
+        private Point _hoverPt;
 
         /// <summary>
         /// Gets or sets a user-defined value.
@@ -154,7 +154,7 @@ namespace FireBlade.SystemManager.Helpers.Controls
             }
         } = true;
 
-        protected internal virtual void Paint(Graphics g, ColorScheme scheme, int x, int w, ref int y)
+        protected internal virtual void Paint(Graphics g, ColorScheme scheme, int x, int w, double opacity, ref int y)
         {
             if (_pane == null || !Visible) return;
 
@@ -163,39 +163,65 @@ namespace FireBlade.SystemManager.Helpers.Controls
             if (_hover && !_pane.LinkFont.Underline)
                 font = new Font(_pane.LinkFont, _pane.LinkFont.Style | FontStyle.Underline);
 
-            SizeF size = Measure(g, w);
-
-            int height = (int)Math.Round(size.Height);
-            int width = (int)Math.Round(size.Width) + 6;
-
-            if (width > w)
-                width = w;
-
-            _rect = new Rectangle(x, y, width, height);
-
-            Rectangle paintRect = _rect;
-            
-            paintRect.Offset(0, 4);
-
-            if (Icon != null)
+            try
             {
-                g.DrawImage(Icon, new Rectangle(x + 2, y + 2, 16, 16));
-                x += 16 + 4;
+                SizeF size = Measure(g, w);
 
-                paintRect.X += 20;
-                paintRect.Width -= 20;
+                int height = (int)Math.Round(size.Height);
+                int width = (int)Math.Round(size.Width) + 6;
+
+                if (width > w)
+                    width = w;
+
+                _rect = new Rectangle(x, y, width, height);
+
+                Rectangle paintRect = _rect;
+
+                paintRect.Offset(0, 4);
+
+                if (Icon != null)
+                {
+                    g.DrawImage(Icon, new Rectangle(x + 2, y + 2, 16, 16));
+                    x += 16 + 4;
+
+                    paintRect.X += 20;
+                    //paintRect.Width -= 20;
+                }
+
+                //g.FillRectangle(Brushes.Red, paintRect);
+                //g.FillRectangle(Brushes.LightGreen, _rect);
+                //g.FillRectangle(Brushes.Blue, new Rectangle(_hoverPt.X, _hoverPt.Y, 4, 4));
+
+                Brush textBrush = null;
+
+                if (scheme == ColorScheme.Blue)
+                    textBrush = new SolidBrush(Color.FromArgb((int)Math.Round(255.0d * opacity),
+                        _hover ? Color.RoyalBlue : SystemColors.Highlight));
+                else if (scheme == ColorScheme.Olive)
+                    textBrush = new SolidBrush(_hover ? Color.FromArgb((int)Math.Round(255.0d * opacity), 114, 146, 29) :
+                        Color.FromArgb((int)Math.Round(255 * opacity),86, 102, 45));
+                else if (scheme == ColorScheme.Silver)
+                    textBrush = new SolidBrush(_hover ? Color.FromArgb((int)Math.Round(255.0d * opacity),
+                        126, 124, 124) : Color.FromArgb((int)Math.Round(255 * opacity), 63, 61, 61));
+                else
+                    textBrush = new SolidBrush(Color.FromArgb((int)Math.Round(255.0d * opacity), SystemColors.ControlText));
+
+                try
+                {
+                    g.DrawString(Text, font, textBrush, paintRect);
+                }
+                finally
+                {
+                    textBrush.Dispose();
+                }
+
+                y += height;
             }
-
-            //g.FillRectangle(Brushes.Red, paintRect);
-            //g.FillRectangle(Brushes.LightGreen, _rect);
-            //g.FillRectangle(Brushes.Blue, new Rectangle(_hoverPt.X, _hoverPt.Y, 4, 4));
-
-            g.DrawString(Text, font, SystemBrushes.Highlight, paintRect);
-
-            if (_hover && !_pane.Font.Underline)
-                font.Dispose();
-
-            y += height;
+            finally
+            {
+                if (_hover && !_pane.Font.Underline)
+                    font.Dispose();
+            }
         }
 
         public override string ToString() => Text;
