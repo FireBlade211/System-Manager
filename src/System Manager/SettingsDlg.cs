@@ -219,18 +219,23 @@ namespace FireBlade.SystemManager
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Cast<ListViewItem>().FirstOrDefault()?.Tag is KeyValuePair<Assembly, IPlugin> kvp)
+            if (listView1.SelectedItems.Cast<ListViewItem>().FirstOrDefault() is ListViewItem lvi &&
+                lvi.Tag is KeyValuePair<Assembly, IPlugin> kvp)
             {
-                File.Move(kvp.Key.Location, kvp.Key.Location + ".tmp");
-
-                var result = MessageBox.Show("To finish removing this plugin, you need to restart System Manager." +
- "\nAny unsaved setting changes will be lost.\nDo you want to restart System Manager now?", "Restart required",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to uninstall this plugin?", "Uninstall", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    Process.Start(Application.ExecutablePath, string.Join(" ", Environment.CommandLine.Split(' ').Skip(1)));
-                    Application.Exit();
+                    File.Move(kvp.Key.Location, kvp.Key.Location + ".tmp");
+                    listView1.Items.Remove(lvi);
+
+                    var result = MessageBox.Show("To finish removing this plugin, you need to restart System Manager." +
+     "\nAny unsaved setting changes will be lost.\nDo you want to restart System Manager now?", "Restart required",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    
+                    if (result == DialogResult.Yes)
+                    {
+                        Application.Restart();
+                    }
                 }
             }
         }
