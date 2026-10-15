@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/ui/">
+    <Project Path="ui/Browser/Browser.csproj" Id="a979b3e9-4030-472c-810b-66333fbf5b0c" />
+    <Project Path="ui/Progress/Progress.csproj" Id="757541d9-1835-4026-879d-b68cf2374b48" />
+  </Folder>
+  <Folder Name="/ui/controls/" />
+  <Folder Name="/ui/controls/taskpane/">
+    <Project Path="ui/controls/taskpane/DynamicTaskPane/DynamicTaskPane.csproj" Id="6dd716a9-eb45-4c7e-8476-8c5190e28c76" />
+    <Project Path="ui/controls/taskpane/SimpleTaskPane/SimpleTaskPane.csproj" Id="bf081265-f21b-464b-b5d1-eab794b3998d" />
+  </Folder>
+  <Project Path="HelloWorld/HelloWorld.csproj" Id="2c0673be-94d7-4e0e-b09e-ff9de6a879e0" />
+</Solution>
