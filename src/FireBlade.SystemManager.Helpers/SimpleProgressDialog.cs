@@ -97,13 +97,15 @@ namespace FireBlade.SystemManager.Helpers
             }
         }
 
+        private bool _allowBindProgress = false;
+
         public double Progress
         {
             get;
             set
             {
-                if (_bound) throw new InvalidOperationException("The Progress property cannot be set while the SimpleProgressDialog is bound" +
-                    " to a BackgroundWorker.");
+                if (_bound && !_allowBindProgress) throw new InvalidOperationException("The Progress property cannot be set while" +
+                    " the SimpleProgressDialog is bound to a BackgroundWorker.");
 
                 field = value;
 
@@ -116,6 +118,9 @@ namespace FireBlade.SystemManager.Helpers
         /// <summary>
         /// Shows the dialog.
         /// </summary>
+        /// <remarks>
+        /// Start your background operation before calling this method, as the modal dialog blocks the calling method until the dialog is closed.
+        /// </remarks>
         public void ShowDialog(IWin32Window parent = null)
         {
             _form = new Form();
@@ -161,12 +166,9 @@ namespace FireBlade.SystemManager.Helpers
             }
 
             if (parent != null)
-            {
-                _form.Show(parent);
-                _form.Enabled = false;
-            }
+                _form.ShowDialog(parent);
             else
-                _form.Show();
+                _form.ShowDialog();
         }
 
         private void Form_Shown(object sender, EventArgs e)
@@ -183,8 +185,6 @@ namespace FireBlade.SystemManager.Helpers
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_closeLock) return;
-
-            _form.Parent.Enabled = true;
 
             if (_bound)
             {
@@ -211,7 +211,7 @@ namespace FireBlade.SystemManager.Helpers
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            _form.Parent.Enabled = true;
+            _form?.Parent?.Enabled = true;
 
             if (_bound)
             {
@@ -230,7 +230,7 @@ namespace FireBlade.SystemManager.Helpers
         public void Close()
         {
             _closeLock = true;
-            _form.Close();
+            _form?.Close();
             _closeLock = false;
         }
 
@@ -251,7 +251,12 @@ namespace FireBlade.SystemManager.Helpers
         {
             if (_bound) return;
 
-            worker.ProgressChanged += (s, e) => Invoke(() => this.Progress = e.ProgressPercentage / 100.0);
+            worker.ProgressChanged += (s, e) => Invoke(() =>
+            {
+                this._allowBindProgress = true;
+                this.Progress = e.ProgressPercentage / 100.0;
+                this._allowBindProgress = false;
+            });
             worker.RunWorkerCompleted += (s, e) => Invoke(() => Close());
 
             AllowCancel = worker.WorkerSupportsCancellation;
