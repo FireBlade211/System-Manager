@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FireBlade.SystemManager.Helpers.Controls;
+using FireBlade.SystemManager.DefaultPlugin.Dialogs;
 
 namespace FireBlade.SystemManager.DefaultPlugin.Pages
 {
@@ -258,6 +259,10 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
                 toolStripMenuItem5.Enabled = false;
                 toolStripMenuItem6.Enabled = false;
             }
+
+            propertiesToolStripMenuItem.Enabled = listView1.SelectedItems.Count > 0;
+            toolStripButton1.Enabled = listView1.SelectedItems.Count > 0;
+            toolStripMenuItem7.Enabled = listView1.SelectedItems.Count > 0;
         }
 
         private void UpdateMenuItems()
@@ -607,6 +612,35 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
         private void taskPane1_GroupExpandedChanged(object sender, TaskPaneGroupExpandedChangedEventArgs e)
         {
             MessageBox.Show($"Group: {e.Group.Title} expanded changed to: {e.Group.Expanded}");
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sc = listView1.SelectedItems.Cast<ListViewItem>().First().Tag as ServiceController;
+            if (sc != null)
+            {
+                var dlg = new ServicePropertiesDialog(sc);
+                dlg.OnLocateService += (s, e) =>
+                {
+                    var it = listView1.Items.Cast<ListViewItem>().FirstOrDefault(x =>
+                    {
+                        if (x.Tag is ServiceController sc)
+                            return sc.ServiceName.Equals(e, StringComparison.Ordinal);
+
+                        return false;
+                    });
+
+                    if (it != null)
+                    {
+                        listView1.SelectedItems.Clear();
+
+                        it.Selected = true;
+                        it.EnsureVisible();
+                    }
+                };
+
+                dlg.ShowDialog();
+            }
         }
     }
 }

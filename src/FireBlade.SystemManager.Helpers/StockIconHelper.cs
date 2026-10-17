@@ -94,11 +94,17 @@ namespace FireBlade.SystemManager.Helpers
                 throw new InvalidOperationException("Failed to extract icon.");
 
             IntPtr hIcon = large ? phLarge[0] : phSmall[0];
-            Icon ico = (Icon)Icon.FromHandle(hIcon).Clone();
 
-            DestroyIcon(hIcon);
+            if (hIcon != IntPtr.Zero)
+            {
+                Icon ico = (Icon)Icon.FromHandle(hIcon).Clone();
 
-            return ico;
+                DestroyIcon(hIcon);
+
+                return ico;
+            }
+
+            return null;
         }
     }
 

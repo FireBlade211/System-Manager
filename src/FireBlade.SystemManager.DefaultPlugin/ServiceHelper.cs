@@ -100,40 +100,196 @@ namespace FireBlade.SystemManager.DefaultPlugin
                     if (scm == IntPtr.Zero)
                         throw new Win32Exception(Marshal.GetLastWin32Error());
 
-                    IntPtr service = OpenService(
-                        scm,
-                        sc.ServiceName,
-                        SERVICE_QUERY_CONFIG);
-
-                    if (service == IntPtr.Zero)
-                        throw new Win32Exception(Marshal.GetLastWin32Error());
-
-                    bool success = QueryServiceConfigW(service, IntPtr.Zero, 0, out uint bytesNeeded);
-
-                    int lastError = Marshal.GetLastWin32Error();
-                    if (lastError != ERROR_INSUFFICIENT_BUFFER)
-                        throw new Win32Exception(lastError);
-
-                    // get the info
-                    IntPtr bufPtr = Marshal.AllocHGlobal((IntPtr)bytesNeeded);
                     try
                     {
-                        success = QueryServiceConfigW(service, bufPtr, bytesNeeded, out bytesNeeded);
-                        if (!success)
-                            throw new Win32Exception();
+                        IntPtr service = OpenService(
+                            scm,
+                            sc.ServiceName,
+                            SERVICE_QUERY_CONFIG);
 
-                        QUERY_SERVICE_CONFIGW config = Marshal.PtrToStructure<QUERY_SERVICE_CONFIGW>(bufPtr);
-                        return (ServiceStartMode)config.dwStartType;
+                        if (service == IntPtr.Zero)
+                            throw new Win32Exception(Marshal.GetLastWin32Error());
+
+                        try
+                        {
+                            bool success = QueryServiceConfigW(service, IntPtr.Zero, 0, out uint bytesNeeded);
+
+                            int lastError = Marshal.GetLastWin32Error();
+                            if (lastError != ERROR_INSUFFICIENT_BUFFER)
+                                throw new Win32Exception(lastError);
+
+                            // get the info
+                            IntPtr bufPtr = Marshal.AllocHGlobal((IntPtr)bytesNeeded);
+                            try
+                            {
+                                success = QueryServiceConfigW(service, bufPtr, bytesNeeded, out bytesNeeded);
+                                if (!success)
+                                    throw new Win32Exception();
+
+                                QUERY_SERVICE_CONFIGW config = Marshal.PtrToStructure<QUERY_SERVICE_CONFIGW>(bufPtr);
+                                return (ServiceStartMode)config.dwStartType;
+                            }
+                            finally
+                            {
+                                Marshal.FreeHGlobal(bufPtr);
+                            }
+                        }
+                        finally
+                        {
+                            CloseServiceHandle(service);
+                        }
                     }
                     finally
                     {
-                        Marshal.FreeHGlobal(bufPtr);
-
-                        CloseServiceHandle(service);
                         CloseServiceHandle(scm);
                     }
                 }
             }
+
+            public string Description
+            {
+                get
+                {
+                    IntPtr scm = OpenSCManager(".", null, SC_MANAGER_CONNECT);
+                    if (scm == IntPtr.Zero)
+                        throw new Win32Exception(Marshal.GetLastWin32Error());
+
+                    try
+                    {
+                        IntPtr service = OpenService(
+                            scm, sc.ServiceName, SERVICE_QUERY_CONFIG);
+
+                        if (service == IntPtr.Zero)
+                            throw new Win32Exception(Marshal.GetLastWin32Error());
+
+                        try
+                        {
+                            QueryServiceConfig2W(
+                                service,
+                                SERVICE_CONFIG_DESCRIPTION,
+                                IntPtr.Zero,
+                                0,
+                                out uint bytesNeeded);
+
+                            int error = Marshal.GetLastWin32Error();
+
+                            if (error != ERROR_INSUFFICIENT_BUFFER)
+                                throw new Win32Exception(error);
+
+                            IntPtr buffer = Marshal.AllocHGlobal((int)bytesNeeded);
+                            try
+                            {
+                                if (!QueryServiceConfig2W(
+                                    service,
+                                    SERVICE_CONFIG_DESCRIPTION,
+                                    buffer,
+                                    bytesNeeded,
+                                    out _))
+                                {
+                                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                                }
+
+                                var description =
+                                    Marshal.PtrToStructure<SERVICE_DESCRIPTION>(buffer);
+
+                                return description.lpDescription == IntPtr.Zero
+                                    ? string.Empty
+                                    : Marshal.PtrToStringUni(description.lpDescription)
+                                        ?? string.Empty;
+                            }
+                            finally
+                            {
+                                Marshal.FreeHGlobal(buffer);
+                            }
+                        }
+                        finally
+                        {
+                            CloseServiceHandle(service);
+                        }
+                    }
+                    finally
+                    {
+                        CloseServiceHandle(scm);
+                    }
+                }
+            }
+
+            public string ImagePath
+            {
+                get
+                {
+                    IntPtr scm = OpenSCManager(".", null, SC_MANAGER_CONNECT);
+                    if (scm == IntPtr.Zero)
+                        throw new Win32Exception(Marshal.GetLastWin32Error());
+
+                    try
+                    {
+                        IntPtr service = OpenService(
+                            scm, sc.ServiceName, SERVICE_QUERY_CONFIG);
+
+                        if (service == IntPtr.Zero)
+                            throw new Win32Exception(Marshal.GetLastWin32Error());
+
+                        try
+                        {
+                            if (QueryServiceConfigW(
+                                service, IntPtr.Zero, 0, out uint bytesNeeded))
+                            {
+                                throw new InvalidOperationException(
+                                    "Unexpected success querying the buffer size.");
+                            }
+
+                            int error = Marshal.GetLastWin32Error();
+                            if (error != ERROR_INSUFFICIENT_BUFFER)
+                                throw new Win32Exception(error);
+
+                            IntPtr buffer = Marshal.AllocHGlobal((int)bytesNeeded);
+                            try
+                            {
+                                if (!QueryServiceConfigW(
+                                    service, buffer, bytesNeeded, out _))
+                                {
+                                    throw new Win32Exception(
+                                        Marshal.GetLastWin32Error());
+                                }
+
+                                var config =
+                                    Marshal.PtrToStructure<QUERY_SERVICE_CONFIGW>(buffer);
+
+                                return Marshal.PtrToStringUni(config.lpBinaryPathName)
+                                    ?? string.Empty;
+                            }
+                            finally
+                            {
+                                Marshal.FreeHGlobal(buffer);
+                            }
+                        }
+                        finally
+                        {
+                            CloseServiceHandle(service);
+                        }
+                    }
+                    finally
+                    {
+                        CloseServiceHandle(scm);
+                    }
+                }
+            }
+        }
+
+        [DllImport("advapi32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        private static extern bool QueryServiceConfig2W(
+    IntPtr hService,
+    uint dwInfoLevel,
+    IntPtr lpBuffer,
+    uint cbBufSize,
+    out uint pcbBytesNeeded);
+
+        private const uint SERVICE_CONFIG_DESCRIPTION = 1;
+
+        private struct SERVICE_DESCRIPTION
+        {
+            public IntPtr lpDescription;
         }
     }
 }

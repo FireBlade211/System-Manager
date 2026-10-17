@@ -65,6 +65,12 @@
     <Compile Include="DefaultPluginIconContract.cs" />
     <Compile Include="DefaultPluginInfo.cs" />
     <Compile Include="DefaultPluginTree.cs" />
+    <Compile Include="Dialogs\ServicePropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ServicePropertiesDialog.Designer.cs">
+      <DependentUpon>ServicePropertiesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\InfoPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\ServicePropertiesDialog.resx">
+      <DependentUpon>ServicePropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\InfoPage.resx">
       <DependentUpon>InfoPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\pause.small-16.png" />
+    <Content Include="Resources\properties.small-16.png" />
     <Content Include="Resources\resume.small-16.png" />
     <Content Include="Resources\run.small-16.png" />
     <Content Include="Resources\stop.small-16.png" />
