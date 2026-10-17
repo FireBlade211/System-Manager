@@ -7,6 +7,8 @@
   <Project Path="FireBlade.SystemManager.DefaultPlugin/FireBlade.SystemManager.DefaultPlugin.csproj" Id="ae613829-d5a2-4b65-93da-139c48241bf8" />
   <Project Path="FireBlade.SystemManager.Helpers/FireBlade.SystemManager.Helpers.csproj" Id="5a101480-ff63-4d4a-b99c-afd54a525c23" />
   <Project Path="FireBlade.SystemManager.Plugin/FireBlade.SystemManager.Plugin.csproj" Id="2c2657ec-7033-4874-a530-bb29c2af4a53" />
-  <Project Path="Setup/Setup.vcxproj" Id="c212c9c0-d2d7-4e83-88bf-85bf2b88b2ed" />
+  <Project Path="Setup/Setup.vcxproj" Id="c212c9c0-d2d7-4e83-88bf-85bf2b88b2ed">
+    <Platform Solution="Release|Any CPU" Project="Win32" />
+  </Project>
   <Project Path="System Manager/System Manager.csproj" Id="696edb87-9f78-4361-8f82-c3b012f1508e" />
 </Solution>
