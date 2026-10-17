@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>Task Panes - UX Guide</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>Task Panes</H1>
+<P>A <B>task pane</B> allows you to organize commands into expandable groups that appear on a side pane.</P>
+
+<IMG SRC="pane.png"></IMG>
+
+<P>A simple task pane.</P>
+
+<H2>Use a task pane when</H2>
+
+<UL>
+<LI>Your page has several commands that benefit from being grouped by category.</LI>
+<LI>Users frequently perform actions on the objects or data displayed in the main view.</LI>
+<LI>Commands need to remain visible and accessible without navigating through menus.</LI>
+<LI>The page has sufficient space to accommodate a side pane without making the main content area uncomfortably narrow.</LI>
+</UL>
+
+<H2>Do not use a task pane when</H2>
+
+<UL>
+<LI>Your page only has a few simple commands that fit naturally in a toolbar or menu.</LI>
+<LI>Commands are rarely used and would add unnecessary clutter.</LI>
+<LI>The main view needs all available space to display its content.</LI>
+<LI>Commands are unrelated and cannot be organized into meaningful groups.</LI>
+</UL>
+
+<H2>Usage patterns</H2>
+
+<P>Task panes have the following usage patterns:</P>
+
+<UL>
+<LI><B>Primary Task Panes</B> - Task panes designed to work without a toolbar or menu bar.</LI>
+<LI><B>Supplemental Task Panes</B> - Task panes designed to be placed alongside a menu bar or toolbar. A supplemental task pane should provide convenient access to frequently used commands. Less frequently used commands may remain on the menu bar or toolbar.</LI>
+</UL>
+
+<P>Commands in a task pane can have the following usage patterns:</P>
+
+<UL>
+<LI><B>Immediate</B> - The command takes effect as soon as the user invokes the command.</LI>
+<LI><B>Interactive</B> - The command requires additional user input.</LI>
+</UL>
+
+<H2>Guidelines</H2>
+
+<UL>
+<LI><B>Include a <I>Common Tasks</I> group</B> as the first group in the task pane if you have a set of commands that users will use most often.</LI>
+<LI><B>Place task panes</B> on the right side of your page to stay consistent with other System Manager pages.</LI>
+<LI><B>Make your task pane 150px or wider.</B> The recommended width range is around 180-230 px.</LI>
+<LI><B>Keep groups reasonably balanced,</B> without sacrificing logical grouping.</LI>
+<LI><B>Respect the active color scheme.</B> Task panes should use colors appropriate to the user's selected System Manager color scheme. Otherwise, this will result in a poor user experience.</LI>
+<LI><B>Hide commands from the task pane if they don't apply to the current context</B>. If this results in the group displaying no commands, hide the group itself.</LI>
+<LI>Within each group, <B>place the most frequently used commands first.</B></LI>
+<LI><B>Prefer standalone dialogs</B> that appear after clicking a command instead of popup menus.</LI>
+<LI><B>Keep groups focused.</B> Each group should contain commands related to a single task or purpose.</LI>
+<LI><B>Use concise group titles.</B> Titles should describe the commands inside the group, not the underlying implementation.</LI>
+<LI><B>Use clear command names.</B> Prefer action-oriented labels such as <I>Refresh</I>, <I>Export</I>, or <I>View Properties.</I></LI>
+<LI><B>Avoid unnecessary commands.</B> Don't add commands merely to fill space or make groups look balanced.</LI>
+<LI><B>Provide appropriate feedback.</B> Commands that take time to complete should communicate progress, and commands that fail should explain the problem where practical.</LI>
+<LI><B>Make consequential actions clear.</B> Commands that delete data, perform destructive operations, or otherwise have significant effects should communicate their consequences and request confirmation when appropriate.</LI>
+
+</UL>
+
+</BODY>
+</HTML>

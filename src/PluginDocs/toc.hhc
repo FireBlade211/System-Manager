@@ -133,6 +133,11 @@
 				<param name="Local" value="ux\controls\cmdbtn.htm">
 				<param name="ImageNumber" value="19">
 				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Task Panes">
+				<param name="Local" value="ux\controls\taskpn.htm">
+				<param name="ImageNumber" value="37">
+				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Layout">
