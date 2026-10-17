@@ -138,7 +138,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Build 0A31:17B";
+            this.label3.Text = "Build 0A32:11B";
             // 
             // gradientControl1
             // 
