@@ -19,6 +19,7 @@ namespace FireBlade.SystemManager.DefaultPlugin
           out uint pcbBytesNeeded
         );
 
+#pragma warning disable CS0649
         private struct QUERY_SERVICE_CONFIGW
         {
             public uint dwServiceType;
@@ -31,6 +32,7 @@ namespace FireBlade.SystemManager.DefaultPlugin
             public nint lpServiceStartName;
             public nint lpDisplayName;
         }
+#pragma warning restore CS0649
 
         private const int ERROR_INSUFFICIENT_BUFFER = 122;
 

@@ -85,6 +85,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReadOnlyCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
