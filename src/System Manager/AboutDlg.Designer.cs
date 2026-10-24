@@ -136,9 +136,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
             this.label3.Location = new System.Drawing.Point(396, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 15);
+            this.label3.Size = new System.Drawing.Size(78, 15);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Build 0A32:11B";
+            this.label3.Text = "Build 0A32:18";
             // 
             // gradientControl1
             // 
