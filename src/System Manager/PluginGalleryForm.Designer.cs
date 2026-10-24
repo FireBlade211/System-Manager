@@ -34,13 +34,18 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar1 = new WindowsFormsAero.ProgressBar();
             this.button3 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.progressBar2 = new WindowsFormsAero.ProgressBar();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,17 +53,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.sourceCodeFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.button5 = new System.Windows.Forms.Button();
-            this.progressBar2 = new WindowsFormsAero.ProgressBar();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -113,6 +113,12 @@
             // 
             this.columnHeader3.Text = "Author";
             this.columnHeader3.Width = 120;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // button2
             // 
@@ -172,6 +178,18 @@
             this.tabPage1.Text = "Description";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.AllowWebBrowserDrop = false;
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(312, 315);
+            this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.progressBar2);
@@ -184,6 +202,33 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Source Code";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(6, 133);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(306, 28);
+            this.progressBar2.TabIndex = 4;
+            this.progressBar2.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(101, 56);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(107, 28);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Download";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(22, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(276, 34);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Click the button below to download the source code for this plugin.";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tabPage3
             // 
@@ -253,6 +298,16 @@
             this.tabPage4.Text = "License";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(318, 321);
+            this.textBox1.TabIndex = 0;
+            // 
             // label1
             // 
             this.label1.AutoEllipsis = true;
@@ -272,36 +327,11 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Description";
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // imageList2
             // 
             this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imageList2.ImageSize = new System.Drawing.Size(32, 32);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(22, 19);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(276, 34);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Click the button below to download the source code for this plugin.";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(101, 56);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(107, 28);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Download";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // sourceCodeFileDlg
             // 
@@ -319,41 +349,10 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // progressBar2
-            // 
-            this.progressBar2.Location = new System.Drawing.Point(6, 133);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(306, 28);
-            this.progressBar2.TabIndex = 4;
-            this.progressBar2.Visible = false;
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.AllowWebBrowserDrop = false;
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(312, 315);
-            this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser1_Navigating);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(318, 321);
-            this.textBox1.TabIndex = 0;
-            // 
             // comboBox1
             // 
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::FireBlade.SystemManager.Properties.Settings.Default, "DeveloperMode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::FireBlade.SystemManager.Properties.Settings.Default, "DeveloperMode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = global::FireBlade.SystemManager.Properties.Settings.Default.DeveloperMode;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Official Repository",
@@ -365,6 +364,7 @@
             this.comboBox1.Size = new System.Drawing.Size(157, 21);
             this.comboBox1.TabIndex = 11;
             this.toolTip1.SetToolTip(this.comboBox1, "Plugin Source");
+            this.comboBox1.Visible = global::FireBlade.SystemManager.Properties.Settings.Default.DeveloperMode;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // pictureBox1
