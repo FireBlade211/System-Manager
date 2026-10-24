@@ -95,6 +95,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ServiceHelper.cs" />
+    <Compile Include="SpringToolStripTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FireBlade.SystemManager.Helpers\FireBlade.SystemManager.Helpers.csproj">

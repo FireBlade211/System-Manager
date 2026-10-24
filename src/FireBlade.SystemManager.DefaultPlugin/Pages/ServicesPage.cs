@@ -32,24 +32,22 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
         private const uint ECM_FIRST = 0x1500;
         private const uint EM_SETCUEBANNER = (ECM_FIRST + 1);
 
-        private HashSet<ListViewItem> _items = [];
+        private List<ListViewItem> _items = [];
 
         private void ServicesPage_Load(object sender, EventArgs e)
         {
-            IntPtr ptr = Marshal.StringToHGlobalUni("Search services...");
+            //IntPtr ptr = Marshal.StringToHGlobalUni("Search services...");
 
-            NativeHelper.SendMessageW(searchBox.Handle, EM_SETCUEBANNER, (UIntPtr)0u, ptr);
+            //NativeHelper.SendMessageW(searchBox.Handle, EM_SETCUEBANNER, (UIntPtr)0u, ptr);
 
-            Marshal.FreeHGlobal(ptr);
-
-            listView1.BeginUpdate();
+            //Marshal.FreeHGlobal(ptr);
 
             var services = ServiceController.GetServices();
             foreach (var sc in services)
             {
                 var start = sc.StartType;
 
-                listView1.Items.Add(new ListViewItem
+                _items.Add(new ListViewItem
                 {
                     Text = sc.DisplayName,
                     Tag = sc,
@@ -78,6 +76,8 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
                 });
             }
 
+            listView1.BeginUpdate();
+            listView1.Items.AddRange(_items.ToArray());
             listView1.EndUpdate();
 
             propertiesToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Return;
@@ -85,11 +85,45 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
 
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            ListViewItem foundItem =
-                listView1.FindItemWithText(searchBox.Text, true, 0, true);
+            string query = searchBox.Text.ToLower();
 
-            if (foundItem != null)
-                listView1.TopItem = foundItem;
+            if (string.IsNullOrEmpty(query))
+            {
+                listView1.BeginUpdate();
+
+                listView1.Items.Clear();
+                listView1.Items.AddRange(_items.ToArray());
+
+                listView1.EndUpdate();
+
+                return;
+            }
+
+            var matches = _items.Where(x =>
+            {
+                if (x.Text.ToLower().Contains(query))
+                    return true;
+
+                if (x.SubItems.Count > 0 && x.SubItems[0].Text.ToLower().Contains(query))
+                    return true;
+
+                return false;
+            }).OrderByDescending(x => {
+                if (x.Text.Contains(query))
+                    return 2;
+
+                if (x.SubItems.Count > 0 && x.SubItems[0].Text.ToLower().Contains(query))
+                    return 1;
+
+                return 0;
+            }).ToArray();
+
+            listView1.BeginUpdate();
+
+            listView1.Items.Clear();
+            listView1.Items.AddRange(matches);
+
+            listView1.EndUpdate();
         }
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
