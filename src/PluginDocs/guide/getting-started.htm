@@ -29,15 +29,15 @@
 <LI>Inside the <B>Project Properties</B> menu, go to <B>Build Actions</B></LI>
 <LI><P>Inside <B>Post-Build Actions</B>, specify the following command-line string:</P>
 
-<CODE>
+<PRE><CODE>
 IF NOT EXIST "PATH_TO_SYSTEM_MANAGER\plugins" MKDIR "PATH_TO_SYSTEM_MANAGER\plugins"
 COPY "$(TargetPath)" "PATH_TO_SYSTEM_MANAGER\plugins\$(TargetFileName)" /Y
 IF "$(ConfigurationName)" == "Debug" COPY "$(TargetDir)$(TargetName).pdb" "PATH_TO_SYSTEM_MANAGER\plugins\$(TargetName).pdb" /Y
-</CODE>
+</CODE></PRE>
 
 <P>Make sure to replace <I>PATH_TO_SYSTEM_MANAGER</I> with the directory of your <B>System Manager</B> installation.</P></LI>
 
-<LI>Set the <B>Run the post-build event</B> setting to <B>When the build updates the project output.</B>
+<LI>Set the <B>Run the post-build event</B> setting to <B>When the build updates the project output.</B></LI>
 <LI>Close the <B>Project Properties</B>.</LI>
 <LI>In <B>Solution Explorer</B>, right-click <B>References</B>, and select <B>Add Project Reference.</B></LI>
 <LI>In the <B>Add References</B> dialog, go to the <B>Browse</B> tab, and click <B>Browse</B>.</LI>
@@ -140,7 +140,7 @@ return new IPageNodeContract[] { new MyPageContract() };
 <LI>Navigate into your page and test that the UI is created correctly. The page should say "Hello, World! This is a sample page from a plugin."</LI>
 </OL>
 
-<P>You have succesfully created your first plugin. Note that the page currently displays the icon of the previous page; see the documentation for <A HREF="../api/IPageContract.htm">IPageContract</A> for more details. To debug your plugin, see the <A HREF="debug.htm">Debugging Plugins</A> page.</P>
+<P>You have successfully created your first plugin. Note that the page currently displays the icon of the previous page; see the documentation for <A HREF="../api/IPageContract.htm">IPageContract</A> for more details. To debug your plugin, see the <A HREF="debug.htm">Debugging Plugins</A> page.</P>
 
 </BODY>
 </HTML>

@@ -83,36 +83,39 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.readOnlyCheckBox1 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
-            this.readOnlyCheckBox2 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
-            this.readOnlyCheckBox3 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
             this.readOnlyCheckBox4 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
+            this.readOnlyCheckBox3 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
+            this.readOnlyCheckBox2 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
+            this.readOnlyCheckBox1 = new FireBlade.SystemManager.DefaultPlugin.ReadOnlyCheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -176,7 +179,7 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(206, 0);
+            this.label5.Location = new System.Drawing.Point(205, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 14);
             this.label5.TabIndex = 22;
@@ -708,6 +711,10 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             // 
             this.panel2.AutoScroll = true;
             this.panel2.AutoScrollMargin = new System.Drawing.Size(0, 8);
+            this.panel2.Controls.Add(this.label69);
+            this.panel2.Controls.Add(this.label70);
+            this.panel2.Controls.Add(this.label67);
+            this.panel2.Controls.Add(this.label68);
             this.panel2.Controls.Add(this.readOnlyCheckBox4);
             this.panel2.Controls.Add(this.readOnlyCheckBox3);
             this.panel2.Controls.Add(this.readOnlyCheckBox2);
@@ -735,17 +742,227 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             this.panel2.Controls.Add(this.label45);
             this.panel2.Controls.Add(this.label46);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(206, 25);
+            this.panel2.Location = new System.Drawing.Point(205, 25);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(237, 206);
+            this.panel2.Size = new System.Drawing.Size(238, 206);
             this.panel2.TabIndex = 33;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label67.Location = new System.Drawing.Point(143, 245);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(65, 14);
+            this.label67.TabIndex = 69;
+            this.label67.Text = "Unknown";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label68.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label68.Location = new System.Drawing.Point(11, 245);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(46, 14);
+            this.label68.TabIndex = 68;
+            this.label68.Text = "Speed:";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label65.Location = new System.Drawing.Point(143, 223);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(65, 14);
+            this.label65.TabIndex = 64;
+            this.label65.Text = "Unknown";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label66.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label66.Location = new System.Drawing.Point(11, 223);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(84, 14);
+            this.label66.TabIndex = 63;
+            this.label66.Text = "Date installed:";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label63.Location = new System.Drawing.Point(143, 201);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(65, 14);
+            this.label63.TabIndex = 61;
+            this.label63.Text = "Unknown";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label64.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label64.Location = new System.Drawing.Point(11, 201);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(74, 14);
+            this.label64.TabIndex = 60;
+            this.label64.Text = "Form factor:";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label61.Location = new System.Drawing.Point(143, 180);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(65, 14);
+            this.label61.TabIndex = 59;
+            this.label61.Text = "Unknown";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label62.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label62.Location = new System.Drawing.Point(11, 180);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(32, 14);
+            this.label62.TabIndex = 58;
+            this.label62.Text = "Slot:";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label59.Location = new System.Drawing.Point(142, 158);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(65, 14);
+            this.label59.TabIndex = 57;
+            this.label59.Text = "Unknown";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label60.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label60.Location = new System.Drawing.Point(10, 158);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(71, 14);
+            this.label60.TabIndex = 56;
+            this.label60.Text = "Description:";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label58.Location = new System.Drawing.Point(143, 136);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(65, 14);
+            this.label58.TabIndex = 55;
+            this.label58.Text = "Unknown";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label57.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label57.Location = new System.Drawing.Point(11, 136);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(116, 14);
+            this.label57.TabIndex = 54;
+            this.label57.Text = "Configured Voltage:";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label55.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label55.Location = new System.Drawing.Point(11, 114);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(120, 14);
+            this.label55.TabIndex = 52;
+            this.label55.Text = "Clock Speed (conf.):";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label56.Location = new System.Drawing.Point(143, 114);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(65, 14);
+            this.label56.TabIndex = 53;
+            this.label56.Text = "Unknown";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label53.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label53.Location = new System.Drawing.Point(10, 93);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(42, 14);
+            this.label53.TabIndex = 50;
+            this.label53.Text = "Name:";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label54.Location = new System.Drawing.Point(142, 93);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(65, 14);
+            this.label54.TabIndex = 51;
+            this.label54.Text = "Unknown";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label51.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label51.Location = new System.Drawing.Point(9, 73);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(52, 14);
+            this.label51.TabIndex = 48;
+            this.label51.Text = "Caption:";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label52.Location = new System.Drawing.Point(141, 73);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(65, 14);
+            this.label52.TabIndex = 49;
+            this.label52.Text = "Unknown";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label49.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label49.Location = new System.Drawing.Point(9, 52);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(56, 14);
+            this.label49.TabIndex = 46;
+            this.label49.Text = "Capacity:";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label50.Location = new System.Drawing.Point(141, 52);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(65, 14);
+            this.label50.TabIndex = 47;
+            this.label50.Text = "Unknown";
             // 
             // label47
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Tahoma", 9F);
             this.label47.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label47.Location = new System.Drawing.Point(9, 29);
+            this.label47.Location = new System.Drawing.Point(9, 31);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(37, 14);
             this.label47.TabIndex = 44;
@@ -755,7 +972,7 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label48.Location = new System.Drawing.Point(141, 29);
+            this.label48.Location = new System.Drawing.Point(141, 31);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(65, 14);
             this.label48.TabIndex = 45;
@@ -766,7 +983,7 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Tahoma", 9F);
             this.label45.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label45.Location = new System.Drawing.Point(9, 8);
+            this.label45.Location = new System.Drawing.Point(9, 10);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(54, 14);
             this.label45.TabIndex = 42;
@@ -776,7 +993,7 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label46.Location = new System.Drawing.Point(141, 8);
+            this.label46.Location = new System.Drawing.Point(141, 10);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(65, 14);
             this.label46.TabIndex = 43;
@@ -789,18 +1006,9 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             this.listBox2.IntegralHeight = false;
             this.listBox2.Location = new System.Drawing.Point(3, 25);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(197, 206);
+            this.listBox2.Size = new System.Drawing.Size(196, 206);
             this.listBox2.TabIndex = 34;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(203, 19);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(221, 13);
-            this.label19.TabIndex = 25;
-            this.label19.Text = "This remade info page is still unfinished, sorry.";
             // 
             // label44
             // 
@@ -823,234 +1031,66 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 27;
             // 
-            // label49
+            // label69
             // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label49.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label49.Location = new System.Drawing.Point(9, 50);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(56, 14);
-            this.label49.TabIndex = 46;
-            this.label49.Text = "Capacity:";
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label69.Location = new System.Drawing.Point(144, 267);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(65, 14);
+            this.label69.TabIndex = 71;
+            this.label69.Text = "Unknown";
             // 
-            // label50
+            // label70
             // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label50.Location = new System.Drawing.Point(141, 50);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(65, 14);
-            this.label50.TabIndex = 47;
-            this.label50.Text = "Unknown";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label51.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label51.Location = new System.Drawing.Point(9, 71);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(52, 14);
-            this.label51.TabIndex = 48;
-            this.label51.Text = "Caption:";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label52.Location = new System.Drawing.Point(141, 71);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(65, 14);
-            this.label52.TabIndex = 49;
-            this.label52.Text = "Unknown";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label53.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label53.Location = new System.Drawing.Point(10, 91);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(42, 14);
-            this.label53.TabIndex = 50;
-            this.label53.Text = "Name:";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label54.Location = new System.Drawing.Point(142, 91);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(65, 14);
-            this.label54.TabIndex = 51;
-            this.label54.Text = "Unknown";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label55.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label55.Location = new System.Drawing.Point(11, 112);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(120, 14);
-            this.label55.TabIndex = 52;
-            this.label55.Text = "Clock Speed (conf.):";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label56.Location = new System.Drawing.Point(143, 112);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(65, 14);
-            this.label56.TabIndex = 53;
-            this.label56.Text = "Unknown";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label57.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label57.Location = new System.Drawing.Point(11, 134);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(116, 14);
-            this.label57.TabIndex = 54;
-            this.label57.Text = "Configured Voltage:";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label58.Location = new System.Drawing.Point(143, 134);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(65, 14);
-            this.label58.TabIndex = 55;
-            this.label58.Text = "Unknown";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label59.Location = new System.Drawing.Point(142, 156);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(65, 14);
-            this.label59.TabIndex = 57;
-            this.label59.Text = "Unknown";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label60.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label60.Location = new System.Drawing.Point(10, 156);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(71, 14);
-            this.label60.TabIndex = 56;
-            this.label60.Text = "Description:";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label61.Location = new System.Drawing.Point(143, 178);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(65, 14);
-            this.label61.TabIndex = 59;
-            this.label61.Text = "Unknown";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label62.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label62.Location = new System.Drawing.Point(11, 178);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(32, 14);
-            this.label62.TabIndex = 58;
-            this.label62.Text = "Slot:";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label63.Location = new System.Drawing.Point(143, 199);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(65, 14);
-            this.label63.TabIndex = 61;
-            this.label63.Text = "Unknown";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label64.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label64.Location = new System.Drawing.Point(11, 199);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(74, 14);
-            this.label64.TabIndex = 60;
-            this.label64.Text = "Form factor:";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label65.Location = new System.Drawing.Point(143, 221);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(65, 14);
-            this.label65.TabIndex = 64;
-            this.label65.Text = "Unknown";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.label66.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label66.Location = new System.Drawing.Point(11, 221);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(84, 14);
-            this.label66.TabIndex = 63;
-            this.label66.Text = "Date installed:";
-            // 
-            // readOnlyCheckBox1
-            // 
-            this.readOnlyCheckBox1.Checked = false;
-            this.readOnlyCheckBox1.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.readOnlyCheckBox1.Location = new System.Drawing.Point(3, 245);
-            this.readOnlyCheckBox1.Name = "readOnlyCheckBox1";
-            this.readOnlyCheckBox1.Size = new System.Drawing.Size(132, 23);
-            this.readOnlyCheckBox1.TabIndex = 62;
-            this.readOnlyCheckBox1.Text = "Hot-swappable";
-            // 
-            // readOnlyCheckBox2
-            // 
-            this.readOnlyCheckBox2.Checked = false;
-            this.readOnlyCheckBox2.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.readOnlyCheckBox2.Location = new System.Drawing.Point(3, 271);
-            this.readOnlyCheckBox2.Name = "readOnlyCheckBox2";
-            this.readOnlyCheckBox2.Size = new System.Drawing.Size(132, 23);
-            this.readOnlyCheckBox2.TabIndex = 65;
-            this.readOnlyCheckBox2.Text = "Removable";
-            // 
-            // readOnlyCheckBox3
-            // 
-            this.readOnlyCheckBox3.Checked = false;
-            this.readOnlyCheckBox3.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.readOnlyCheckBox3.Location = new System.Drawing.Point(3, 297);
-            this.readOnlyCheckBox3.Name = "readOnlyCheckBox3";
-            this.readOnlyCheckBox3.Size = new System.Drawing.Size(132, 23);
-            this.readOnlyCheckBox3.TabIndex = 66;
-            this.readOnlyCheckBox3.Text = "Replaceable";
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.label70.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label70.Location = new System.Drawing.Point(12, 267);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(46, 14);
+            this.label70.TabIndex = 70;
+            this.label70.Text = "Status:";
             // 
             // readOnlyCheckBox4
             // 
             this.readOnlyCheckBox4.Checked = false;
             this.readOnlyCheckBox4.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.readOnlyCheckBox4.Location = new System.Drawing.Point(3, 322);
+            this.readOnlyCheckBox4.Location = new System.Drawing.Point(3, 371);
             this.readOnlyCheckBox4.Name = "readOnlyCheckBox4";
             this.readOnlyCheckBox4.Size = new System.Drawing.Size(132, 23);
             this.readOnlyCheckBox4.TabIndex = 67;
             this.readOnlyCheckBox4.Text = "Powered On";
+            // 
+            // readOnlyCheckBox3
+            // 
+            this.readOnlyCheckBox3.Checked = false;
+            this.readOnlyCheckBox3.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.readOnlyCheckBox3.Location = new System.Drawing.Point(3, 346);
+            this.readOnlyCheckBox3.Name = "readOnlyCheckBox3";
+            this.readOnlyCheckBox3.Size = new System.Drawing.Size(132, 23);
+            this.readOnlyCheckBox3.TabIndex = 66;
+            this.readOnlyCheckBox3.Text = "Replaceable";
+            // 
+            // readOnlyCheckBox2
+            // 
+            this.readOnlyCheckBox2.Checked = false;
+            this.readOnlyCheckBox2.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.readOnlyCheckBox2.Location = new System.Drawing.Point(3, 320);
+            this.readOnlyCheckBox2.Name = "readOnlyCheckBox2";
+            this.readOnlyCheckBox2.Size = new System.Drawing.Size(132, 23);
+            this.readOnlyCheckBox2.TabIndex = 65;
+            this.readOnlyCheckBox2.Text = "Removable";
+            // 
+            // readOnlyCheckBox1
+            // 
+            this.readOnlyCheckBox1.Checked = false;
+            this.readOnlyCheckBox1.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.readOnlyCheckBox1.Location = new System.Drawing.Point(3, 294);
+            this.readOnlyCheckBox1.Name = "readOnlyCheckBox1";
+            this.readOnlyCheckBox1.Size = new System.Drawing.Size(132, 23);
+            this.readOnlyCheckBox1.TabIndex = 62;
+            this.readOnlyCheckBox1.Text = "Hot-swappable";
             // 
             // InfoPage
             // 
@@ -1059,7 +1099,6 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
             this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label44);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label4);
@@ -1096,7 +1135,6 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Label label19;
         private Label label44;
         private ProgressBar progressBar1;
         private TableLayoutPanel tableLayoutPanel1;
@@ -1168,5 +1206,9 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
         private ReadOnlyCheckBox readOnlyCheckBox2;
         private ReadOnlyCheckBox readOnlyCheckBox3;
         private ReadOnlyCheckBox readOnlyCheckBox4;
+        private Label label67;
+        private Label label68;
+        private Label label69;
+        private Label label70;
     }
 }

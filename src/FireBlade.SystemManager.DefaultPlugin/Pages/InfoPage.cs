@@ -638,6 +638,11 @@ namespace FireBlade.SystemManager.DefaultPlugin.Pages
 
                 if (TryGetValue(item, "PoweredOn", out bool power))
                     readOnlyCheckBox4.Checked = power;
+
+                if (TryGetValue(item, "Speed", out uint ns))
+                    label67.Text = $"{ns} ns";
+
+                label69.Text = TryGetValue(item, "Status");
             }
         }
     }
