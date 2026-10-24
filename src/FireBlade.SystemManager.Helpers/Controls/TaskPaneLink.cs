@@ -59,12 +59,22 @@ namespace FireBlade.SystemManager.Helpers.Controls
             }
         }
 
+        public bool Enabled
+        {
+            get;
+            set
+            {
+                field = value;
+                _pane?.Invalidate();
+            }
+        } = true;
+
         internal bool _hover;
         internal Rectangle _rect = Rectangle.Empty;
 
         protected internal virtual bool HitTest(Point pt /*, ref bool lockCursorChange */)
         {
-            if (!Visible)
+            if (!Enabled || !Visible)
             {
                 _hover = false;
                 _pane.Cursor = Cursors.Default;
@@ -93,12 +103,12 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
             Font font = _pane.LinkFont;
 
-            if (_hover && !_pane.LinkFont.Underline)
+            if (_hover && Enabled && !_pane.LinkFont.Underline)
                 font = new Font(_pane.LinkFont, _pane.LinkFont.Style | FontStyle.Underline);
 
             var size = g.MeasureString(Text, font);
 
-            if (_hover && !_pane.LinkFont.Underline)
+            if (_hover && Enabled && !_pane.LinkFont.Underline)
                 font.Dispose();
 
             return size;
@@ -160,7 +170,7 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
             Font font = _pane.LinkFont;
 
-            if (_hover && !_pane.LinkFont.Underline)
+            if (_hover && Enabled && !_pane.LinkFont.Underline)
                 font = new Font(_pane.LinkFont, _pane.LinkFont.Style | FontStyle.Underline);
 
             try
@@ -194,7 +204,9 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
                 Brush textBrush = null;
 
-                if (scheme == ColorScheme.Blue)
+                if (!Enabled)
+                    textBrush = new SolidBrush(Color.FromArgb((int)Math.Round(255 * opacity), 63, 61, 61));
+                else if (scheme == ColorScheme.Blue)
                     textBrush = new SolidBrush(Color.FromArgb((int)Math.Round(255.0d * opacity),
                         _hover ? Color.RoyalBlue : SystemColors.Highlight));
                 else if (scheme == ColorScheme.Olive)
@@ -219,7 +231,7 @@ namespace FireBlade.SystemManager.Helpers.Controls
             }
             finally
             {
-                if (_hover && !_pane.Font.Underline)
+                if (_hover && Enabled && !_pane.Font.Underline)
                     font.Dispose();
             }
         }

@@ -251,6 +251,8 @@ namespace FireBlade.SystemManager.Helpers.Controls
 
                 foreach (var link in _links)
                 {
+                    if (!link.Enabled) continue;
+
                     bool hit = link.HitTest(pt);
                     if (hit)
                     {
