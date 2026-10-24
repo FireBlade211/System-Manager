@@ -84,6 +84,11 @@
 			<param name="ImageNumber" value="35">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IThemeContract (contract)">
+			<param name="Local" value="api\IThemeContract.htm">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="IPageContainerContract (contract)">
 			<param name="Local" value="api\IPageContainerContract.htm">
 			<param name="ImageNumber" value="35">

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<Title>API - IThemeContract</Title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css"></LINK>
+</HEAD>
+<BODY>
+<H1>IThemeContract contract</H1>
+
+<P CLASS="subtle">
+Assembly: FireBlade.SystemManager.Plugin.dll<BR>
+Namespace: FireBlade.SystemManager.Plugin
+</P>
+
+Represents a contract that allows a plugin to retrieve theme information.
+
+<H2>Methods</H2>
+
+<UL>
+<LI><CODE>void OnColorSchemeChanged(ColorScheme scheme)</CODE>
+
+<P>Fired whenever the System Manager theme changes.</P>
+
+<P><B>Parameters</B></P>
+
+<UL>
+<LI><B>scheme</B>: The user-selected color scheme.</LI>
+</UL>
+
+<P><B>Returns</B></P>
+
+<P CLASS="subtle"><I>None</I></P>
+
+<P><B>Remarks</B></P>
+<P>This function also fires when your page loads, which allows you initialize your page with the selected theme.</P>
+
+</UL>
+
+<H2>This contract can implement</H2>
+<P CLASS="subtle"><I>None</I></P>
+
+</BODY>
+</HTML>
